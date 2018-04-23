@@ -16,8 +16,14 @@ require ('../app/dbconn.php');
     if (isset($_GET['add']) && $_GET['add'] == "failed"){
         echo '<script>';
         echo 'alert("Failed to add player");';
-        echo 'window.location.href = "index.php";';
+        echo 'window.location.href = "player.php";';
         echo '</script>';
+}
+else if (isset($_GET['add']) && $_GET['add'] == "success"){
+    echo '<script >';
+    echo 'alert("Succesfully added a player");';
+    echo 'window.location.href = "player.php";';
+    echo '</script>';
 }
 ?>
 
@@ -39,6 +45,28 @@ require ('../app/dbconn.php');
     </div>
 </form>
 
+<?php
+
+
+$result = $conn->prepare("SELECT * FROM tbl_players");
+$result->execute();
+//$result2 = $conn->prepare("SELECT * FROM tbl_players WHERE student_id ='{$name}'");
+//$result2->execute();
+
+for($i=0; $row = $result->fetch(); $i++){
+
+    ?>
+    <ul>
+
+        <li><?php echo $row['student_id']; ?></li>
+        <li><?php echo $row['first_name']; ?></li>
+        <li><?php echo $row['last_name']; ?></li>
+
+    </ul>
+
+<?php }
+
+?>
 
 </body>
 </html>
