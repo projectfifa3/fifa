@@ -15,14 +15,13 @@ if (isset($_POST['student_id']) && isset($_POST['first_name']) && $_POST['last_n
     $query = $conn->prepare($sql);
     $query->execute(array($student_id));
 
-    if($query == 0)
-    {
+    if ($query->rowCount() >= 1) {
+        header('Location: ' . '../../public/index.php?add=failed');
+    } else {
         $sql = "INSERT INTO `tbl_players` (`student_id`, `first_name`, `last_name`) VALUES ('$student_id', '$first_name','$last_name')";
         $conn->exec($sql);
 
         $_SESSION["player_error"] = "Succesfully added player ".$first_name." " .$last_name;
-    }else{
-        header('Location: ' . '../../public/index.php?add=failed');
     }
 
 
