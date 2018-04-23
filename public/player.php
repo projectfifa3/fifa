@@ -19,6 +19,12 @@ require ('../app/dbconn.php');
         echo 'window.location.href = "index.php";';
         echo '</script>';
 }
+elseif (isset($_GET['add']) && $_GET['add'] == "success"){
+    echo '<script >';
+    echo 'alert("Succesfully added a player");';
+    echo 'window.location.href = "index.php";';
+    echo '</script>';
+}
 ?>
 
 <form action="../app/player/addPlayer.php" method="POST">
