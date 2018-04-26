@@ -13,15 +13,21 @@ require ('../app/dbconn.php');
 </head>
 <body>
 <?php
-    if (isset($_GET['add']) && $_GET['add'] == "failed"){
-        echo '<script>';
-        echo 'alert("Failed to add player");';
-        echo 'window.location.href = "player.php";';
-        echo '</script>';
+if (isset($_GET['add']) && $_GET['add'] == "failed"){
+    echo '<script>';
+    echo 'alert("Failed to add player");';
+    echo 'window.location.href = "player.php";';
+    echo '</script>';
 }
 else if (isset($_GET['add']) && $_GET['add'] == "success"){
     echo '<script >';
     echo 'alert("Succesfully added a player");';
+    echo 'window.location.href = "player.php";';
+    echo '</script>';
+}
+else if (isset($_GET['del']) && $_GET['del'] == "success"){
+    echo '<script >';
+    echo 'alert("Succesfully deleted player");';
     echo 'window.location.href = "player.php";';
     echo '</script>';
 }
@@ -50,9 +56,8 @@ else if (isset($_GET['add']) && $_GET['add'] == "success"){
 
 $result = $conn->prepare("SELECT * FROM tbl_players");
 $result->execute();
-//$result2 = $conn->prepare("SELECT * FROM tbl_players WHERE student_id ='{$name}'");
-//$result2->execute();
 
+//zichtbaar voor gebruiker (gebruikersrechten NULL)
 for($i=0; $row = $result->fetch(); $i++){
 
     ?>
@@ -62,22 +67,25 @@ for($i=0; $row = $result->fetch(); $i++){
         <li><?php echo $row['first_name']; ?></li>
         <li><?php echo $row['last_name']; ?></li>
 
-        <?php
-        $dbc = $conn;
-        $sql = "SELECT * FROM tbl_players ORDER BY last_name ASC";
-        $players = $dbc->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($players as $item){
-            echo "<ul>";
-            echo "<a class='removeButton' href='../app/player/deletePlayer.php?playerId=" . $item['id'] . "'>Remove " . $item["first_name"] . " " . $item["last_name"] . "</a>";
-            echo "</ul>";
-        }
-
-        ?>
 
     </ul>
 
 <?php }
+
+?>
+
+<?php
+//zichtbaar voor admin (gebruikersrechten 1)
+$dbc = $conn;
+$sql = "SELECT * FROM tbl_players ORDER BY last_name ASC";
+$players = $dbc->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($players as $item){
+    echo "<ul>";
+    echo "<a class='removeButton' href='../app/player/deletePlayer.php?playerId=" . $item['id'] . "'>Remove " . $item["first_name"] . " " . $item["last_name"] . "</a>";
+    echo "</ul>";
+}
 
 ?>
 
