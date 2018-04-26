@@ -21,8 +21,14 @@
                 </div>
                 <div class="header-nav">
                     <nav>
-                        <a href="index.php">Home</a>
-                        <a href="login.php">Login</a>
+                        <?php
+                        error_reporting(E_PARSE || E_ERROR);
+                        if (isset($_SESSION['username'])){
+                        echo '<a href="index.php">Home</a>
+                        <a href="login.php">Login</a>';
+                        }
+                        ?>
+
                         <a href="team.php">Teams</a>
                         <a href="player.php">Spelers</a>
                         <a href="matches.php">Wedstrijden</a>
@@ -70,7 +76,11 @@
         }
         if ($_GET['login'] == 'succes')
         {
-            echo '<h5>you are logged in!</h5>';
+            echo '<h5>je bent ingelogd!</h5>';
+        }
+        if ($_GET['login'] == 'adminSucces')
+        {
+            echo '<h5>je bent ingelogd als admin!</h5>';
         }
         if ($_GET['login'] == 'wrong')
         {
