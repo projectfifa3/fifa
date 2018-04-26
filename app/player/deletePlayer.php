@@ -12,6 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == "GET")
         $sql = "DELETE FROM `tbl_players` WHERE `id` = '$playerId'";
         $dbc->query($sql);
 
-        header("location: ../../public/players.php");
+        header('Location: ' . '../../public/player.php?del=success');
     }
 }
