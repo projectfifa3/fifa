@@ -10,35 +10,22 @@
         <link rel="manifest" href="site.webmanifest">
         <link rel="apple-touch-icon" href="icon.png">
         <!-- Place favicon.ico in the root directory -->
-        <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
-    <div class="header">
-        <div class="container">
-            <div class="header-split">
-                <div class="header-logo">
-                    <a href="index.php"><h1>Project FIFA</h1></a>
-                </div>
-                <div class="header-nav">
-                    <nav>
-                        <?php
-                        error_reporting(E_PARSE || E_ERROR);
-                        if (isset($_SESSION['username'])){
-                        echo '<a href="index.php">Home</a>
-                        <a href="login.php">Login</a>';
-                        }
-                        ?>
+    <?php
+    require ('templates/header.php')
+    ?>
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
 
-                        <a href="team.php">Teams</a>
-                        <a href="player.php">Spelers</a>
-                        <a href="matches.php">Wedstrijden</a>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Add your site or application content here -->
+
     <div class="info">
         <div class="container">
+            <div class="info-header">
+                <h2>Login</h2>
+            </div>
             <div class="info-split">
                 <div class="info-login">
                     <h2>Inloggen</h2>
@@ -47,7 +34,9 @@
                         <input type="text" name="username">
                         <p>wachtwoord</p>
                         <input type="password" name="password">
-                        <button name="login">inloggen</button>
+                        <div class="info-login-button">
+                            <button name="login">inloggen</button>
+                        </div>
                     </form>
                 </div>
                 <div class="info-register">
@@ -57,11 +46,15 @@
                         <input type="text" name="username">
                         <p>wachtwoord</p>
                         <input type="password" name="password">
-                        <button name="signup">Registreer</button>
+                        <div class="info-login-button">
+                            <button name="signup">Registreer</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
+
+
         <?php
         error_reporting(E_PARSE || E_ERROR);
         if (($_GET['signup'] == 'succes' )){
@@ -76,44 +69,26 @@
         }
         if ($_GET['login'] == 'succes')
         {
-            echo '<h5>je bent ingelogd!</h5>';
+                echo '<h5>Welkom '.$_SESSION["username"].'</h5>';
         }
         if ($_GET['login'] == 'adminSucces')
         {
-            echo '<h5>je bent ingelogd als admin!</h5>';
+            echo '<h5>Welcome Admin</h5>';
         }
         if ($_GET['login'] == 'wrong')
         {
             echo '<h5>de gerbuikersnaam of wachtwoord is onjuist</h5>';
         }
         if (isset($_SESSION['username'])){
-            echo '   <form action="../app/logout/logout.php" method="post">
-                    <h2>welcome</h2>
-                 <button type="submit" name="logout">Logout</button>
-                 </form>';
+            echo '<h2>welkom '.$_SESSION["username"].'</h2>';
         }
         ?>
     </div>
-    <div class="footer">
-        <div class="container">
-            <div class="footer-split">
-                <div class="footer-credits">
-                    <p>Makers van dit project:</p>
-                    <ul>
-                        <li>Gerben Logghe</li>
-                        <li>Sander van Deurzen</li>
-                        <li>Dominic Baeten</li>
-                        <li>Zeff Drent</li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <p>Contact</p>
-                    <p>06 12 34 56 78</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
+    <?php
+    require ('templates/footer.php')
+    ?>
+    </body>
 
         <script src="js/vendor/modernizr-3.5.0.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -127,5 +102,5 @@
             ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
         </script>
         <script src="https://www.google-analytics.com/analytics.js" async defer></script>
-    </body>
-</html>
+
+

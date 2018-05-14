@@ -1,6 +1,5 @@
 <?php
 require ('../dbconn.php');
-require ('../../public/login.php');
 $uid = $_POST['username'];
 $pwd = $_POST['password'];
 

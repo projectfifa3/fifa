@@ -13,6 +13,7 @@ require ('../app/dbconn.php');
 </head>
 <body>
 <?php
+require ('templates/header.php');
 if (isset($_GET['add']) && $_GET['add'] == "failed"){
     echo '<script>';
     echo 'alert("Failed to add player");';
@@ -86,7 +87,7 @@ foreach ($players as $item){
     echo "<a class='removeButton' href='../app/player/deletePlayer.php?playerId=" . $item['id'] . "'>Remove " . $item["first_name"] . " " . $item["last_name"] . "</a>";
     echo "</ul>";
 }
-
+require ('templates/footer.php');
 ?>
 
 </body>

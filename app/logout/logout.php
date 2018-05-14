@@ -1,7 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Sander van Deurzen
- * Date: 24-4-2018
- * Time: 09:55
- */
+session_start();
+session_unset();
+session_destroy();
+header("location:../../public/login.php");
