@@ -73,9 +73,8 @@ for($i=0; $row = $result->fetch(); $i++){
 
 <?php }
 
-?>
 
-<?php
+
 //zichtbaar voor admin (gebruikersrechten 1)
 $dbc = $conn;
 $sql = "SELECT * FROM tbl_players ORDER BY last_name ASC";
