@@ -22,150 +22,79 @@
 <!-- Add your site or application content here -->
 
 <?php
-
-require ('templates/header.php');
+require ('../app/dbconn.php');
 
 ?>
-<div class="info">
-    <div class="container">
-        <div class="info-header">
-            <h2>Teams</h2>
-        </div>
-        <div class="info-body">
-            <h3>Team toevoegen</h3>
-            <div class="info-player-add">
-                <p>Speler naam:</p>
-                <textarea name="team_toevoegen" id="team_toevoegen" cols="20" rows="1"></textarea>
-                <button>Toevoegen</button>
-            </div>
-            <div class="info-team">
-                <div class="info-team-upper">
-                    <div class="team">
-                        <span>Team 1:</span>
-                        <ul>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                        </ul>
-                    </div>
-                    <div class="team">
-                        <span>Team 2:</span>
-                        <ul>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                        </ul>
-                    </div>
-                    <div class="team">
-                        <span>Team 3:</span>
-                        <ul>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                        </ul>
-                    </div>
-                    <div class="team">
-                        <span>Team 4:</span>
-                        <ul>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="info-team-footer">
-                    <div class="team">
-                        <span>Team 5:</span>
-                        <ul>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                        </ul>
-                    </div>
-                    <div class="team">
-                        <span>Team 6:</span>
-                        <ul>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                        </ul>
-                    </div>
-                    <div class="team">
-                        <span>Team 7:</span>
-                        <ul>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                        </ul>
-                    </div>
-                    <div class="team">
-                        <span>Team 8:</span>
-                        <ul>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                            <li>Speler</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
 <?php
-require('templates/footer.php');
+if (isset($_GET['add']) && $_GET['add'] == "failed"){
+    echo '<script>';
+    echo 'alert("Failed to add team");';
+    echo 'window.location.href = team.php";';
+    echo '</script>';
+}
+else if (isset($_GET['add']) && $_GET['add'] == "success"){
+    echo '<script >';
+    echo 'alert("Succesfully added a team");';
+    echo 'window.location.href = "team.php";';
+    echo '</script>';
+}
+else if (isset($_GET['del']) && $_GET['del'] == "success"){
+    echo '<script >';
+    echo 'alert("Succesfully deleted team");';
+    echo 'window.location.href = "team.php";';
+    echo '</script>';
+}
+?>
+<form action="../app/team/addTeam.php" method="POST">
+    <div class="item">
+        <label for="teamname">teamname:</label>
+        <input type="text" name="name" required>
+    </div>
+    <div class="item">
+        <input type="submit" class="button">
+    </div>
+</form>
+<?php
+
+
+$result = $conn->prepare("SELECT * FROM tbl_teams");
+$result->execute();
+
+//zichtbaar voor gebruiker (gebruikersrechten NULL)
+for($i=0; $row = $result->fetch(); $i++){
+?>
+    <ul>
+
+        <li><?php echo $row['name']; ?></li>
+
+    </ul>
+
+<?php }
+
+
+//zichtbaar voor admin (gebruikersrechten 1)
+$dbc = $conn;
+$sql = "SELECT * FROM tbl_teams ORDER BY `name` ASC";
+$players = $dbc->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($players as $item){
+    echo "<ul>";
+    echo "<a class='removeButton' href='../app/player/deleteTeam.php?teamId=" . $item['id'] . "'>Remove " . $item["name"] . "</a>";
+    echo "</ul>";
+}
+
 ?>
 
-<script src="js/vendor/modernizr-3.5.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
-<script src="js/plugins.js"></script>
-<script src="js/main.js"></script>
 
-<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-<script>
-    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-    ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
-</script>
-<script src="https://www.google-analytics.com/analytics.js" async defer></script>
 </body>
 </html>
