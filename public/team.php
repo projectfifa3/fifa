@@ -85,11 +85,11 @@ for($i=0; $row = $result->fetch(); $i++){
 //zichtbaar voor admin (gebruikersrechten 1)
 $dbc = $conn;
 $sql = "SELECT * FROM tbl_teams ORDER BY `name` ASC";
-$players = $dbc->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+$teams = $dbc->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($players as $item){
+foreach ($teams as $item){
     echo "<ul>";
-    echo "<a class='removeButton' href='../app/player/deleteTeam.php?teamId=" . $item['id'] . "'>Remove " . $item["name"] . "</a>";
+    echo "<a class='removeButton' href='../app/team/deleteTeam.php?teamId=" . $item['id'] . "'>Remove " . $item["name"] . "</a>";
     echo "</ul>";
 }
 
