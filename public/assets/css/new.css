@@ -100,6 +100,17 @@ textarea {
 body {
     font-family: Arial;
 }
+select{
+    padding-right: 10px;
+}
+h4{
+    position: relative;
+    top: -77px;
+    right: -400px;
+    font-size: 28px;
+    color: white;
+    font-family: sans-serif;
+}
 
 /* ==================== CONTAINER ====================*/
 
@@ -158,6 +169,10 @@ h5{
 .info h2 {
     margin: 0;
     text-align: center;
+}
+h6{
+   width: 40px;
+    margin-right: 0;
 }
 
 .info h3 {
@@ -386,6 +401,13 @@ h5{
 
 .poule-games p {
     font-weight: bold;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+.poules-games li{
+    display: inline-flex;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 

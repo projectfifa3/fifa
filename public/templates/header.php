@@ -16,7 +16,9 @@
             <div class="header-logo">
                 <a href="index.php"><h1>Project FIFA</h1></a>
             </div>
+
             <div class="header-nav">
+
                 <nav>
                     <?php
                     session_start();

@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html class="no-js" lang="">
 <head>
@@ -49,11 +51,84 @@ require ('templates/header.php');
                 </div>
             </div>
             <div class="info-knockout-quarterfinal">
+                <?php
+                require ('../app/dbconn.php');
+                // the ascending query
+                $sql = "SELECT * FROM tbl_teams ORDER BY `name` ASC ";
+
+                $stmt=$conn->prepare($sql);
+                $stmt->execute();
+                $results=$stmt->fetchAll();
+
+                //the descending query
+
+                $sql = "SELECT * FROM tbl_teams ORDER BY `name` DESC ";
+
+                $stmt=$conn->prepare($sql);
+                $stmt->execute();
+                $desresults=$stmt->fetchAll();
+
+                // insert query from the dropdownmenu
+
+                $option = $_POST['option'];
+                $team1 = $_POST['team1'];
+                $team2 = $_POST['team2'];
+
+
+                if (isset($_POST['submit'])){
+                    $insertQuery = "UPDATE `tbl_team` SET `teamname` = '$team1' WHERE `position` = '1'";
+                    $insertQuery = "UPDATE `tbl_team` SET `teamname` = '$team2' WHERE `position` = '1'";
+                    $insertResult = $conn->prepare($insertQuery);
+                    $insertExec = $insertResult->execute(array(":teamname" =>$team1 ));
+                    $insertExec = $insertResult->execute(array(":teamname" =>$team2 ));
+
+
+                    var_dump($insertExec);
+
+                    header("location:matches.php?succes");
+                }
+                ?>
                 <div class="knockout-match">
                     <h3>Kwart Finale #1</h3>
-                    <p>Team 1 VS Team 2</p>
+                    <?php
+                    // the dropdown menu's\\
+                    // team 1
+                    if (isset($_SESSION['is_Admin'])){
+                        echo '<form action="matches.php" method="post">';
+                        echo '  <select name="team1">
+                        <option value="Kies team"></option>';
+                        foreach ($results as $output) {
+                            echo '<option name="option">'; echo $output["name"];echo ' </option>';
+                        }
+                        //team 2
+
+                        echo'   </select>';
+                        echo '  <select name="team2">
+                        <option value="Kies team"></option>';
+                        foreach ($results as $output) {
+                            echo '<option name="option">'; echo $output["name"];echo ' </option>';
+                        }
+                        echo'   </select>';
+                        echo '    
+                        <button name="submit" value="submit">submit</button>
+                        </form>';
+                    }else{
+                        //posting the names of the teams
+                        
+                    }
+
+
+                    ?>
+<!--                    <select>-->
+<!--                        <option value="Kies team"></option>-->
+<!--                        --><?php //foreach ($results as $output) {?>
+<!--                            <option>--><?php //echo $output["name"]; ?><!--</option>-->
+<!--                        --><?php //} ?>
+<!--                    </select>-->
                     <p>0 - 0</p>
                 </div>
+
+
                 <div class="knockout-match">
                     <h3>Kwart Finale #2</h3>
                     <p>Team 3 VS Team 4</p>
@@ -77,68 +152,73 @@ require ('templates/header.php');
                 <div class="poule">
                     <h3>Poule A</h3>
                     <ul>
-                        <li>Team 1</li>
-                        <li>Team 2</li>
-                        <li>Team 3</li>
-                        <li>Team 4</li>
+                        <?php
+                        foreach ($results as $teams){
+                            echo '<li>'.$teams['name'].'</li>';
+                        }
+                        ?>
                     </ul>
                 </div>
                 <div class="poule">
                     <h3>Poule B</h3>
                     <ul>
-                        <li>Team 1</li>
-                        <li>Team 2</li>
-                        <li>Team 3</li>
-                        <li>Team 4</li>
+                        <?php
+                        foreach ($desresults as $teams){
+                            echo '<li>'.$teams['name'].'</li>';
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="poules-shedule">
-            <h2>Poule Wedstrijden</h2>
-            <div class="poules-games">
-                <div class="poule-games">
-                    <p>1ste Wedstrijden</p>
-                    <ul>
-                        <li>Team 1 VS Team 2</li>
-                        <li>Team 3 VS Team 4</li>
-                        <li>Team 5 VS Team 6</li>
-                        <li>Team 7 VS Team 8</li>
-                    </ul>
-                </div>
-                <div class="poule-games">
-                    <p>2de Wedstrijden</p>
-                    <ul>
-                        <li>Team 1 VS Team 3</li>
-                        <li>Team 2 VS Team 4</li>
-                        <li>Team 5 VS Team 7</li>
-                        <li>Team 6 VS Team 8</li>
-                    </ul>
-                </div>
-                <div class="poule-games">
-                    <p>3de Wedstrijden</p>
-                    <ul>
-                        <li>Team 1 VS Team 4</li>
-                        <li>Team 2 VS Team 5</li>
-                        <li>Team 3 VS Team 8</li>
-                        <li>Team 6 VS Team 7</li>
-                    </ul>
-                </div>
-                <div class="poule-games">
-                    <p>4de Wedstrijden</p>
-                    <ul>
-                        <li>Team 1 VS Team 8</li>
-                        <li>Team 2 VS Team 7</li>
-                        <li>Team 3 VS Team 6</li>
-                        <li>Team 4   VS Team 5</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="poule-matches">
-        </div>
-    </div>
-</div>
+<!--        <div class="poules-shedule">-->
+<!--            <h2>Poule Wedstrijden</h2>-->
+<!--            <div class="poules-games">-->
+<!--                <div class="poule-games">-->
+<!--                    <p>1ste Wedstrijden</p>-->
+<!--                    <ul>-->
+<!--                        --><?php
+//                        foreach ($desresults as $teams){
+//                                echo '<li>'.$teams['name'].'<p>vs</p>'.$teams['name'].'</li>';
+//
+//
+//                        }
+//                        ?>
+<!--                    </ul>-->
+<!--                </div>-->
+<!--                <div class="poule-games">-->
+<!--                    <p>2de Wedstrijden</p>-->
+<!--                    <ul>-->
+<!--                        <li>Team 1 VS Team 3</li>-->
+<!--                        <li>Team 2 VS Team 4</li>-->
+<!--                        <li>Team 5 VS Team 7</li>-->
+<!--                        <li>Team 6 VS Team 8</li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--                <div class="poule-games">-->
+<!--                    <p>3de Wedstrijden</p>-->
+<!--                    <ul>-->
+<!--                        <li>Team 1 VS Team 4</li>-->
+<!--                        <li>Team 2 VS Team 5</li>-->
+<!--                        <li>Team 3 VS Team 8</li>-->
+<!--                        <li>Team 6 VS Team 7</li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--                <div class="poule-games">-->
+<!--                    <p>4de Wedstrijden</p>-->
+<!--                    <ul>-->
+<!--                        <li>Team 1 VS Team 8</li>-->
+<!--                        <li>Team 2 VS Team 7</li>-->
+<!--                        <li>Team 3 VS Team 6</li>-->
+<!--                        <li>Team 4   VS Team 5</li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="poule-matches">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <?php
 require('templates/footer.php');
 ?>

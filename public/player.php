@@ -80,12 +80,14 @@ for($i=0; $row = $result->fetch(); $i++){
 $dbc = $conn;
 $sql = "SELECT * FROM tbl_players ORDER BY last_name ASC";
 $players = $dbc->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-
-foreach ($players as $item){
-    echo "<ul>";
-    echo "<a class='removeButton' href='../app/player/deletePlayer.php?playerId=" . $item['id'] . "'>Remove " . $item["first_name"] . " " . $item["last_name"] . "</a>";
-    echo "</ul>";
+if (isset($_SESSION['is_Admin'])){
+    foreach ($players as $item){
+        echo "<ul>";
+        echo "<a class='removeButton' href='../app/player/deletePlayer.php?playerId=" . $item['id'] . "'>Remove " . $item["first_name"] . " " . $item["last_name"] . "</a>";
+        echo "</ul>";
+    }
 }
+
 require ('templates/footer.php');
 ?>
 

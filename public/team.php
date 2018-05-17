@@ -36,6 +36,8 @@ require ('../app/dbconn.php');
 </head>
 <body>
 <?php
+require ('templates/header.php');
+
 if (isset($_GET['add']) && $_GET['add'] == "failed"){
     echo '<script>';
     echo 'alert("Failed to add team");';
@@ -86,12 +88,15 @@ for($i=0; $row = $result->fetch(); $i++){
 $dbc = $conn;
 $sql = "SELECT * FROM tbl_teams ORDER BY `name` ASC";
 $players = $dbc->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-
-foreach ($players as $item){
-    echo "<ul>";
-    echo "<a class='removeButton' href='../app/player/deleteTeam.php?teamId=" . $item['id'] . "'>Remove " . $item["name"] . "</a>";
-    echo "</ul>";
+if (isset($_SESSION['is_Admin'])){
+    foreach ($players as $item){
+        echo "<ul>";
+        echo "<a class='removeButton' href='../app/player/deleteTeam.php?teamId=" . $item['id'] . "'>Remove " . $item["name"] . "</a>";
+        echo "</ul>";
+    }
 }
+
+require ('templates/footer.php');
 
 ?>
 
