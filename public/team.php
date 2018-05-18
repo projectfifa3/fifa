@@ -80,9 +80,23 @@ for($i=0; $row = $result->fetch(); $i++){
         <li><?php echo $row['name']; ?></li>
 
     </ul>
+<?php } ?>
+    <select name="formPlayer">
 
-<?php }
+<?php
+$result = $conn->prepare("SELECT * FROM tbl_players");
+$result->execute();
+if ( ['team_id'] == null){
+foreach ($result as $dropdown){
+        echo '<option value="">' . $dropdown['first_name'] . '</option>';
+    }
+}else{
+    echo '<option value="">' . "all players have a team" . '</option>';
+}
+?>
+    </select>
 
+<?php
 
 //zichtbaar voor admin (gebruikersrechten 1)
 $dbc = $conn;
@@ -91,7 +105,7 @@ $players = $dbc->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 if (isset($_SESSION['is_Admin'])){
     foreach ($players as $item){
         echo "<ul>";
-        echo "<a class='removeButton' href='../app/player/deleteTeam.php?teamId=" . $item['id'] . "'>Remove " . $item["name"] . "</a>";
+        echo "<a class='removeButton' href='../app/team/deleteTeam.php?teamId=" . $item['id'] . "'>Remove " . $item["name"] . "</a>";
         echo "</ul>";
     }
 }
