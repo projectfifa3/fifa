@@ -31,6 +31,14 @@ require ('templates/header.php');
         </div>
         <div class="info-knockout">
             <h2>Knock-out</h2>
+            <?php
+            if ($_GET['submit'] == 'succes'){
+                echo '<h2>succesfully added!</h2>';
+            }
+            if ($_GET['submit'] == 'empty'){
+                echo '<h2>please fill in all columns.</h2>';
+            }
+            ?>
             <div class="info-knockout-final">
                 <div class="knockout-match">
                     <h3>Finale</h3>
@@ -73,19 +81,57 @@ require ('templates/header.php');
                 $option = $_POST['option'];
                 $team1 = $_POST['team1'];
                 $team2 = $_POST['team2'];
+                $team3 = $_POST['team3'];
+                $team4 = $_POST['team4'];
+                $team5 = $_POST['team5'];
+                $team6 = $_POST['team6'];
+                $team7 = $_POST['team7'];
+                $team8 = $_POST['team8'];
+                if (isset($_POST['submit'])) {
+                    if (empty($team1) || empty($team2) || empty($team3) || empty($team4) || empty($team5) || empty($team6) || empty($team7) || empty($team8)){
+                        header("location:matches.php?submit=empty");
 
+                    }else{
+                        $insertQuery = "UPDATE `tbl_team` SET `teamname` = '$team1' WHERE `position` = '1' ";
+                        $insertResult = $conn->prepare($insertQuery);
+                        $insertExec = $insertResult->execute();
 
-                if (isset($_POST['submit'])){
-                    $insertQuery = "UPDATE `tbl_team` SET `teamname` = '$team1' WHERE `position` = '1'";
-                    $insertQuery = "UPDATE `tbl_team` SET `teamname` = '$team2' WHERE `position` = '1'";
-                    $insertResult = $conn->prepare($insertQuery);
-                    $insertExec = $insertResult->execute(array(":teamname" =>$team1 ));
-                    $insertExec = $insertResult->execute(array(":teamname" =>$team2 ));
+                        $insertQuery2 = "UPDATE `tbl_team` SET `teamname` = '$team2' WHERE `position` = '2' ";
+                        $insertResult2 = $conn->prepare($insertQuery2);
+                        $insertExec = $insertResult2->execute();
 
+                        $insertQuery3 = "UPDATE `tbl_team` SET `teamname` = '$team3' WHERE `position` = '3'";
+                        $insertResult3 = $conn->prepare($insertQuery3);
+                        $insertExec = $insertResult3->execute();
 
-                    var_dump($insertExec);
+                        $insertQuery4 = "UPDATE `tbl_team` SET `teamname` = '$team4' WHERE `position` = '4'";
+                        $insertResult4 = $conn->prepare($insertQuery4);
+                        $insertExec = $insertResult4->execute();
 
-                    header("location:matches.php?succes");
+                        $insertQuery5 = "UPDATE `tbl_team` SET `teamname` = '$team5' WHERE `position` = '5'";
+                        $insertResult5 = $conn->prepare($insertQuery5);
+                        $insertExec = $insertResult5->execute();
+
+                        $insertQuery6 = "UPDATE `tbl_team` SET `teamname` = '$team6' WHERE `position` = '6'";
+                        $insertResult6 = $conn->prepare($insertQuery6);
+                        $insertExec = $insertResult6->execute();
+
+                        $insertQuery7 = "UPDATE `tbl_team` SET `teamname` = '$team7' WHERE `position` = '7'";
+                        $insertResult7 = $conn->prepare($insertQuery7);
+                        $insertExec = $insertResult7->execute();
+
+                        $insertQuery8 = "UPDATE `tbl_team` SET `teamname` = '$team8' WHERE `position` = '8'";
+                        $insertResult8 = $conn->prepare($insertQuery8);
+                        $insertExec = $insertResult8->execute();
+
+                        header("location:matches.php?submit=succes");
+                    }
+                }
+//                -------------------------------------------------the scores--------------------------------------------\\
+                if (isset($_POST['submitscores'])){
+
+                    header("location:matches.php?submit=scoresucces");
+
                 }
                 ?>
                 <div class="knockout-match">
@@ -96,7 +142,7 @@ require ('templates/header.php');
                     if (isset($_SESSION['is_Admin'])){
                         echo '<form action="matches.php" method="post">';
                         echo '  <select name="team1">
-                        <option value="Kies team"></option>';
+                        <option value=""></option>';
                         foreach ($results as $output) {
                             echo '<option name="option">'; echo $output["name"];echo ' </option>';
                         }
@@ -104,47 +150,161 @@ require ('templates/header.php');
 
                         echo'   </select>';
                         echo '  <select name="team2">
-                        <option value="Kies team"></option>';
+                        <option value=""></option>';
                         foreach ($results as $output) {
                             echo '<option name="option">'; echo $output["name"];echo ' </option>';
                         }
                         echo'   </select>';
                         echo '    
                         <button name="submit" value="submit">submit</button>
-                        </form>';
-                    }else{
-                        //posting the names of the teams
+                        ';
                         
+                        // scores for match 1
+                        echo ' <div class="scores">
+                               <form action="matches.php">
+                               <input type="number" name="team1score">
+                               <input type="number" name="team2score">
+                               </div>
+                               <div class="scoresubmit">
+                               <input type="submit" name="scoresubmit">
+                               </div>
+                               </form>
+                               ';
+                    }else{
+                        for ($i = 0; $i <= 2; $i++) {
+
+                        //posting the names of the teams
+                        $postquery = "SELECT * FROM tbl_team WHERE `position` = '$i' ";
+                        $postResult = $conn->prepare($postquery);
+                        $postResult->execute();
+                        foreach ($postResult as ${'name'.$i}){
+                            echo '<div class="matches">';
+                           echo ${'name'.$i}['teamname'];
+                           echo '</div>';
+                        }
+                        }
+
                     }
-
-
                     ?>
-<!--                    <select>-->
-<!--                        <option value="Kies team"></option>-->
-<!--                        --><?php //foreach ($results as $output) {?>
-<!--                            <option>--><?php //echo $output["name"]; ?><!--</option>-->
-<!--                        --><?php //} ?>
-<!--                    </select>-->
-                    <p>0 - 0</p>
                 </div>
-
 
                 <div class="knockout-match">
                     <h3>Kwart Finale #2</h3>
-                    <p>Team 3 VS Team 4</p>
+                    <?php
+                    if (isset($_SESSION['is_Admin'])){
+                        //team 3
+                        echo '<form action="matches.php" method="post">';
+                        echo '  <select name="team3">
+                        <option value=""></option>';
+                        foreach ($results as $output) {
+                            echo '<option name="option">'; echo $output["name"];echo ' </option>';
+                        }
+                        //team 4
+                        echo'   </select>';
+                        echo '  <select name="team4">
+                        <option value=""></option>';
+                        foreach ($results as $output) {
+                            echo '<option name="option">'; echo $output["name"];echo ' </option>';
+                        }
+                        echo'   </select>';
+
+                    }else{
+                        for ($i = 3; $i <= 4; $i++) {
+
+                            //posting the names of the teams
+                            $postquery = "SELECT * FROM tbl_team WHERE `position` = '$i' ";
+                            $postResult = $conn->prepare($postquery);
+                            $postResult->execute();
+                            foreach ($postResult as ${'name'.$i}){
+                                echo '<div class="matches">';
+                                echo ${'name'.$i}['teamname'];
+                                echo '</div>';
+                            }
+                        }
+
+                    }
+                    ?>
                     <p>0 - 0</p>
                 </div>
                 <div class="knockout-match">
                     <h3>Kwart Finale #3</h3>
-                    <p>Team 5 VS Team 6</p>
+                    <?php
+                    if (isset($_SESSION['is_Admin'])){
+                        //team 5
+                        echo '<form action="matches.php" method="post">';
+                        echo '  <select name="team5">
+                        <option value=""></option>';
+                        foreach ($results as $output) {
+                            echo '<option name="option">'; echo $output["name"];echo ' </option>';
+                        }
+                        //team 6
+                        echo'   </select>';
+                        echo '  <select name="team6">
+                        <option value=""></option>';
+                        foreach ($results as $output) {
+                            echo '<option name="option">'; echo $output["name"];echo ' </option>';
+                        }
+                        echo'   </select>';
+
+                    }else{
+                        for ($i = 5; $i <= 6; $i++) {
+
+                            //posting the names of the teams
+                            $postquery = "SELECT * FROM tbl_team WHERE `position` = '$i' ";
+                            $postResult = $conn->prepare($postquery);
+                            $postResult->execute();
+                            foreach ($postResult as ${'name'.$i}){
+                                echo '<div class="matches">';
+                                echo ${'name'.$i}['teamname'];
+                                echo '</div>';
+                            }
+                        }
+
+                    }
+                    ?>
                     <p>0 - 0</p>
                 </div>
                 <div class="knockout-match">
                     <h3>Kwart Finale #4</h3>
-                    <p>Team 7 VS Team 8</p>
+                    <?php
+                    if (isset($_SESSION['is_Admin'])){
+                        //team 7
+                        echo '<form action="matches.php" method="post">';
+                        echo '  <select name="team7">
+                        <option value=""></option>';
+                        foreach ($results as $output) {
+                            echo '<option name="option">'; echo $output["name"];echo ' </option>';
+                        }
+                        //team 8
+                        echo'   </select>';
+                        echo '  <select name="team8">
+                        <option value=""></option>';
+                        foreach ($results as $output) {
+                            echo '<option name="option">'; echo $output["name"];echo ' </option>';
+                        }
+                        echo'   </select>';
+                        echo '
+                            </form>';
+                    }else{
+                        for ($i = 7; $i <= 8; $i++) {
+
+                            //posting the names of the teams
+                            $postquery = "SELECT * FROM tbl_team WHERE `position` = '$i' ";
+                            $postResult = $conn->prepare($postquery);
+                            $postResult->execute();
+                            foreach ($postResult as ${'name'.$i}){
+                                echo '<div class="matches">';
+                                echo ${'name'.$i}['teamname'];
+                                echo '</div>';
+                            }
+                        }
+
+                    }
+                    ?>
                     <p>0 - 0</p>
                 </div>
             </div>
+
         </div>
         <div class="poules-teams">
             <h2>Poules</h2>

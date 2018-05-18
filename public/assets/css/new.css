@@ -409,8 +409,28 @@ h6{
     margin-bottom: 5px;
     margin-top: 5px;
 }
-
-
+.matches{
+    display: inline-flex;
+    margin-left: 15px;
+    margin-right: 25px;
+}
+select{
+    width: 65px;
+}
+.info-knockout-quarterfinal button{
+  position: absolute;
+    top: 120px;
+    right: 555px;
+    height: 40px;
+    width: 80px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+}
+.scores input{
+    margin-left: 20px;
+    width: 30px;
+}
 
 
 
