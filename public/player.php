@@ -1,6 +1,5 @@
 <?php
 require ('../app/dbconn.php');
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -55,24 +54,41 @@ else if (isset($_GET['del']) && $_GET['del'] == "success"){
 <?php
 
 
-$result = $conn->prepare("SELECT * FROM tbl_players");
-$result->execute();
+
 
 //zichtbaar voor gebruiker (gebruikersrechten NULL)
-for($i=0; $row = $result->fetch(); $i++){
+
+
+$results = $conn->prepare("SELECT * FROM tbl_teams");
+$results->execute();
+
+$result = $conn->prepare("SELECT * FROM tbl_players");
+$result->execute();
+            ?>
+<!--voor admin (gebruikersrechten 1)-->
+<form action="../app/team/teamManager.php">
+    <input type="submit" class="button">
+<?php
+
+foreach ($results as $dropdown){
+foreach ($result as $player){
 
     ?>
+
     <ul>
 
-        <li><?php echo $row['student_id']; ?></li>
-        <li><?php echo $row['first_name']; ?></li>
-        <li><?php echo $row['last_name']; ?></li>
+        <li><?php echo $player['student_id']; ?></li>
+        <li><?php echo $player['first_name']; ?></li>
+        <li><?php echo $player['last_name']; ?></li>
+        <select name="formPlayer">
+        <?php echo '<option value="">' . $dropdown['name'] . '</option>';?>
 
 
+        </select>
 
     </ul>
-
-<?php }
+</form>
+<?php }}
 
 
 
