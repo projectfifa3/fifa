@@ -431,6 +431,27 @@ select{
     margin-left: 20px;
     width: 30px;
 }
+.scoresubmit input{
+    position: absolute;
+    top: 70px;
+    right: 530px;
+    height: 40px;
+    width: 140px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+}
+.winner1{
+
+    display: inline-flex;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.stripe{
+    position: absolute;
+    top: 33px;
+    right: 895px;
+}
 
 
 
