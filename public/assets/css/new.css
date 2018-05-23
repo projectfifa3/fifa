@@ -452,8 +452,50 @@ select{
     top: 33px;
     right: 895px;
 }
+.final1{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.showwinner{
+    position: relative;
+    right: 0px;
+}
+.winner{
+    font-size: 30px;
+    font-family: Corbel;
+    display: flex;
+    justify-content: center;
+}
+/* The animation code */
+@keyframes example {
+    0%   {color:red; left:0px; top:0px;}
+    25%  {color:yellow; left:200px; top:0px;}
+    50%  {color:blue; left:200px; top:200px;}
+    75%  {color:green; left:0px; top:200px;}
+    100% {color:red; left:0px; top:0px;}
+}
 
-
+/* The element to apply the animation to */
+.winner {
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;;
+}
+.refresh button{
+    position: absolute;
+    top: 700px;
+    right: 695px;
+    height: 40px;
+    width: 140px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+}
+.quarterfinals{
+    display: flex;
+    justify-content: center;
+}
 
 
 
