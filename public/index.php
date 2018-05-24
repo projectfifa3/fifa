@@ -27,6 +27,9 @@ require ('templates/header.php')
         <div class="info-header">
             <h2>Project FIFA</h2>
         </div>
+        <div class="download">
+            <h3><a href="../bijlagen/sql/project_fifa.csv">Download csv</a></h3>
+        </div>
         <div class="info-app-header">
             <h3>C# Applicatie</h3>
         </div>

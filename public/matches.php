@@ -53,13 +53,18 @@ require ('templates/header.php');
                 <?php
                 //showing the winner from the competition
 
-                $winningteam = "SELECT * FROM `tbl_team` WHERE `position` = '15';";
+                $winningteam = "SELECT `score` FROM `tbl_team` WHERE `position` = '15';";
                 $winningteamResult = $conn->prepare($winningteam);
                 $winningteamResult->execute();
-                $winningteamFetch = $winningteamResult->fetchAll();
-                if ($winningteamFetch['score'] == 0){
-                    echo '<h2>And the winning team is:</h2>';
-                    foreach ($winningteamFetch as $result){
+                $winningteamFetch = $winningteamResult->fetch();
+
+                $winnername = "SELECT * FROM `tbl_team` WHERE `position` = '15';";
+                $winnerteamResult = $conn->prepare($winnername);
+                $winnerteamResult->execute();
+                $winnerteamFetch = $winnerteamResult->fetchAll();
+                if ($winningteamFetch['score'] > 0  ){
+                    echo '<h2>het winnende team is:</h2>';
+                    foreach ($winnerteamFetch as $result){
                         echo '<div class="winner">';
                         echo $result['teamname'].'!';
                         echo '</div>';
@@ -115,9 +120,9 @@ require ('templates/header.php');
 
                 </div>
             </div>
-            <div class="refresh">
-                <button onclick="history.go(0)" value="refresh">refresh</button>
-            </div>
+<!--            <div class="refresh">-->
+<!--                <button onclick="history.go(0)" value="refresh">refresh</button>-->
+<!--            </div>-->
             <div class="info-knockout-semifinal">
                 <div class="knockout-match">
                     <h3>Halve Finale #1</h3>
