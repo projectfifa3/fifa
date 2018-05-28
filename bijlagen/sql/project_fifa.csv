@@ -1,39 +1,16 @@
-"1","1","2","2","4","2017-04-13 18:00:00"
-"2","2","1",NULL,NULL,"2017-05-04 00:00:00"
-"1","d123456","1","Lasse","Schöne","2017-04-13 09:44:13",NULL
-"2","d5435435","1","Davy ","Klaassen","2017-04-13 09:44:13",NULL
-"3","d545454","1","Hakim ","Ziyech","2017-04-13 09:45:47",NULL
-"4","d666555","1","Kasper","Dolberg","2017-04-13 09:45:47",NULL
-"5","d74745","2","Luuk","de Jong","2017-04-13 09:48:23",NULL
-"6","d987665","2","Siem","de Jong","2017-04-13 09:48:23",NULL
-"7","d11555","2","Jeroen","Zoet","2017-04-13 09:48:23",NULL
-"8","d544566","2","Hector","Moreno","2017-04-13 09:48:23",NULL
-"1","Ajax","1","2"
-"2","fc kip","2","1"
-"3","fc utrecht","3","2"
-"4","feyenoord","4","1"
-"5","knudde fc","5","2"
-"6","nac","6","1"
-"7","PSV","7","2"
-"8","fc utrecht","8","1"
-"9","Ajax","9","1"
-"10","fc utrecht","10","2"
-"11","knudde fc","11","2"
-"12","PSV","12","1"
-"13","fc utrecht","13","2"
-"14","knudde fc","14","3"
-"15","knudde fc","15","3"
-"1","1","Ajax","2017-04-13 09:42:45",NULL
-"2","1","PSV","2017-04-13 09:42:45",NULL
-"3","0","nac","2018-05-14 11:26:04",NULL
-"4","0","feyenoord","2018-05-17 11:33:48",NULL
-"5","0","fc utrecht","2018-05-18 10:38:46",NULL
-"6","0","knudde fc","2018-05-18 10:38:57",NULL
-"7","0","all-stars","2018-05-18 10:39:12",NULL
-"8","0","fc kip","2018-05-18 10:51:18",NULL
-"8","admin","$2y$10$1e9Xey0GQzYURPb06chII.DGIYUkf7ieRUNtBaK89haGR2QR4tjD2","1"
-"9","wachtwoord","$2y$10$JKCEbhmQ7JnZetD/Kww.y.BtxdcuQvrmtsPaSICI8JFaLFFnMI48u",NULL
-"11","username","$2y$10$dGjDNNtGP6bOByfyEGa6bemSUd4gdL4Lt8U30GCrUcbG2fxTKMYTi",NULL
-"12","thijs","$2y$10$.5NUVA5k0Yaqejg5eTHfDulxtZtGXFZwEDF30j285h9I7635icerq",NULL
-"13","matthijs","$2y$10$fAK8gyCJBlFTPmP8bndlfuO2O6bg4oz4RSoiyTzDMtIyyyIclDvL2",NULL
-"14","sander","$2y$10$KBeuBmrTgXjt5RXKU2Cbeuma/IMph/0Dr7RKfPyp.RBIM6wJGu8O.",NULL
+id,teamname,position,score
+1,all-stars,1,20
+2,nac,2,9
+3,"fc utrecht",3,15
+4,"fc kip",4,20
+5,Ajax,5,20
+6,"knudde fc",6,5
+7,PSV,7,19
+8,feyenoord,8,20
+9,all-stars,9,0
+10,"fc kip",10,0
+11,Ajax,11,0
+12,feyenoord,12,0
+13,"no team",13,0
+14,"no team",14,0
+15,"no team",15,0

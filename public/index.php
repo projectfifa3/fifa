@@ -28,7 +28,27 @@ require ('templates/header.php')
             <h2>Project FIFA</h2>
         </div>
         <div class="download">
-            <h3><a href="../bijlagen/sql/project_fifa.csv">Download csv</a></h3>
+            <?php
+            echo '<form action="index.php" method="post" id="downloadcsv">
+                  <input type="submit" value="download csv" name="submit">';
+
+            if (isset($_POST['submit'])) {
+
+                session_start();
+                header('Content-Type: text/csv; charset=utf-8');
+                header('Content-Disposition: attachment; filename=project_fifa' . date('Y-m-d') . '.csv');
+                $output = fopen("php://output", "w");
+                fputcsv($output, array('id', 'teamname', 'position', 'score'));
+
+                $array = $conn->prepare("SELECT * FROM tbl_team ");
+                $array->execute();
+                $array = $array->fetchAll();
+                foreach ($array as $row) {
+                    fputcsv($output, $row);
+                }
+                fclose($output);
+            }
+            ?>
         </div>
         <div class="info-app-header">
             <h3>C# Applicatie</h3>

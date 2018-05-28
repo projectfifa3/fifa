@@ -826,7 +826,47 @@ require ('templates/header.php');
 <!--        </div>-->
 <!--    </div>-->
 <!--</div>-->
-<?php
+        <div class="add-result-scorer-right">
+
+            <form action="matches.php" method="post">
+
+                <select name="playername2" id="scorer2">
+
+                    <option value="" selected>Kies een speler</option>
+
+                    <?php
+
+                    $result = $conn->prepare("SELECT * FROM tbl_players");
+                    $result->execute();
+
+                    for($i=0; $row = $result->fetch(); $i++){
+                        ?>
+
+                        <option value="<?php echo $row['first_name']; ?>" >
+                            <?php echo $row['first_name']; ?>
+                        </option>
+
+
+                    <?php } ?>
+
+
+                </select>
+                <input type="number" name="amount_goals2" id="amount_goals2" min="1" max="99" maxlength="2" placeholder="Goals">
+
+                <input type="submit" name="add_scorer2" id="add_scorer2" value="Toevoegen">
+
+                <?php
+
+                $scorer2 = $_POST['amount_goals2'];
+                $playername2 = $_POST['playername2'];
+                    if (isset($_POST['add_scorer2'])){
+                        $addscorequery2 = "INSERT INTO `tbl_goalscores`(player, goals)VALUES (:player, :goals)";
+                        $addscoreResult2 = $conn->prepare($addscorequery2);
+                        $scoreexec = $addscoreResult2->execute(array(":player" => $playername2, ":goals" => $scorer2));
+
+                    }
+                ?>
+                <?php
 require('templates/footer.php');
 ?>
 <script src="js/vendor/modernizr-3.5.0.min.js"></script>

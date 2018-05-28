@@ -496,6 +496,18 @@ select{
     display: flex;
     justify-content: center;
 }
+.download{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.download input{
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+    height: 30px;
+    width: 150px;
+}
 
 
 
