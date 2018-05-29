@@ -674,10 +674,7 @@ require ('templates/header.php');
                                <input type="number" name="team5score">
                                <input type="number" name="team6score">
                                </div>
-                              
-                              
                                ';
-
                     }
                         for ($i = 5; $i <= 6; $i++) {
 
@@ -778,54 +775,6 @@ require ('templates/header.php');
                 </div>
             </div>
         </div>
-<!--        <div class="poules-shedule">-->
-<!--            <h2>Poule Wedstrijden</h2>-->
-<!--            <div class="poules-games">-->
-<!--                <div class="poule-games">-->
-<!--                    <p>1ste Wedstrijden</p>-->
-<!--                    <ul>-->
-<!--                        --><?php
-//                        foreach ($desresults as $teams){
-//                                echo '<li>'.$teams['name'].'<p>vs</p>'.$teams['name'].'</li>';
-//
-//
-//                        }
-//                        ?>
-<!--                    </ul>-->
-<!--                </div>-->
-<!--                <div class="poule-games">-->
-<!--                    <p>2de Wedstrijden</p>-->
-<!--                    <ul>-->
-<!--                        <li>Team 1 VS Team 3</li>-->
-<!--                        <li>Team 2 VS Team 4</li>-->
-<!--                        <li>Team 5 VS Team 7</li>-->
-<!--                        <li>Team 6 VS Team 8</li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--                <div class="poule-games">-->
-<!--                    <p>3de Wedstrijden</p>-->
-<!--                    <ul>-->
-<!--                        <li>Team 1 VS Team 4</li>-->
-<!--                        <li>Team 2 VS Team 5</li>-->
-<!--                        <li>Team 3 VS Team 8</li>-->
-<!--                        <li>Team 6 VS Team 7</li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--                <div class="poule-games">-->
-<!--                    <p>4de Wedstrijden</p>-->
-<!--                    <ul>-->
-<!--                        <li>Team 1 VS Team 8</li>-->
-<!--                        <li>Team 2 VS Team 7</li>-->
-<!--                        <li>Team 3 VS Team 6</li>-->
-<!--                        <li>Team 4   VS Team 5</li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="poule-matches">-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
         <div class="add-result-scorer-right">
 
             <form action="matches.php" method="post">
@@ -863,7 +812,6 @@ require ('templates/header.php');
                         $addscorequery2 = "INSERT INTO `tbl_goalscores`(player, goals)VALUES (:player, :goals)";
                         $addscoreResult2 = $conn->prepare($addscorequery2);
                         $scoreexec = $addscoreResult2->execute(array(":player" => $playername2, ":goals" => $scorer2));
-
                     }
                 ?>
                 <?php

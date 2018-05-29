@@ -32,7 +32,6 @@ if (isset($_POST['login'])){
                 }else{
                     $_SESSION["username"] = $_POST["username"];
                     header("location: ../../public/login.php?login=succes");
-
                 }
                 exit();
 
