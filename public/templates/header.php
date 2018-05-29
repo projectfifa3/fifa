@@ -33,6 +33,15 @@
                     <a href="player.php">Spelers</a>
                     <a href="matches.php">Wedstrijden</a>
                 </nav>
+                <?php
+                if (!isset($_SESSION['username']) && !isset($_SESSION['is_Admin'])){
+                    echo '<img src="../img/Soccer.png" alt="footbalcharacter" class="soccerimg">';
+                }
+                if ((isset($_SESSION['username']) || isset($_SESSION['is_Admin']))){
+                    echo '<img src="../img/Soccer.png" alt="footbalcharacter" class="soccerimg2">';
+                }
+                ?>
+
             </div>
         </div>
     </div>

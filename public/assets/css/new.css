@@ -124,6 +124,7 @@ h4{
 .header {
     background-color: #185D74;
     height: 75px;
+    position: sticky;
 }
 
 .header-split {
@@ -151,6 +152,18 @@ h4{
     color: #ffffff;
     text-decoration: none;
 }
+.soccerimg{
+     position: relative;
+     right: 120px;
+     top: -50px;
+     width: 12%;
+ }
+.soccerimg2{
+    position: relative;
+    right: 40px;
+    top: -55px;
+    width: 12%;
+}
 
 
 /* ==================== INFO ====================*/
@@ -164,6 +177,9 @@ h5{
 }
 .info {
     background-color: #ADD8E6;
+    /*background-image: url(".  ./../../img/soccerBG2.png");*/
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: fixed;*/
 }
 
 .info h2 {
@@ -214,10 +230,32 @@ h6{
 
 .info-app-body {
     text-align: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
 
 .info-app-footer {
-    padding-bottom: 25px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+.info-app-footer p{
+    margin-bottom: 10px;
+}
+.info-app-footer a{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 30px;
+    text-align: center;
+}
+.info-app-footer button{
+    margin-top: 30px;
+    text-align: center;
+    border-radius: 10px;
+}
+.info-app-footer ul{
+    text-align: left;
+    margin-left: 400px;
 }
 
 .info-split {
@@ -259,6 +297,13 @@ h6{
     display: flex;
     justify-content: space-around;
 }
+.info-webapp{
+    border-top: 1px ridge grey;
+}
+.info-webapp h3{
+    padding-top: 40px;
+}
+
 
 
 /* ==================== FOOTER ====================*/
@@ -505,8 +550,10 @@ select{
     border-radius: 30px;
     cursor: pointer;
     border: none;
-    height: 30px;
-    width: 150px;
+    height: 50px;
+    width: 180px;
+    font-size: 25px;
+    margin-top: 70px;
 }
 
 
