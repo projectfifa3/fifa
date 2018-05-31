@@ -555,6 +555,30 @@ select{
     font-size: 25px;
     margin-top: 70px;
 }
+.sendbutton{
+    height: 30px;
+    width: 120px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+}
+.playeradd{
+    display: flex;
+    justify-content: center;
+
+}
+.item{
+    margin-top: 60px;
+    margin-left: 10px;
+}
+body{
+    background-color: #ADD8E6;
+}
+.teamadd{
+    display: flex;
+    justify-content: center;
+}
+
 
 
 

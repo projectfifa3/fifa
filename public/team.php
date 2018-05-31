@@ -58,54 +58,34 @@ else if (isset($_GET['del']) && $_GET['del'] == "success"){
 }
 ?>
 <form action="../app/team/addTeam.php" method="POST">
-    <div class="item">
-        <label for="teamname">teamname:</label>
-        <input type="text" name="name" required>
-    </div>
-    <div class="item">
-        <input type="submit" class="button">
+    <div class="teamadd">
+        <div class="item">
+            <label for="teamname">teamname:</label>
+            <input type="text" name="name" required>
+        </div>
+        <div class="item">
+            <input type="submit" class="sendbutton">
+        </div>
     </div>
 </form>
-<?php
-
-
-$result = $conn->prepare("SELECT * FROM tbl_teams");
-$result->execute();
-
-//zichtbaar voor gebruiker (gebruikersrechten NULL)
-for($i=0; $row = $result->fetch(); $i++){
-?>
-    <ul>
-
-        <li><?php echo $row['name']; ?></li>
-
-    </ul>
-<?php } ?>
-    <select name="formPlayer">
-
-<?php
-$result = $conn->prepare("SELECT * FROM tbl_players");
-$result->execute();
-if ( ['team_id'] == null){
-foreach ($result as $dropdown){
-        echo '<option value="">' . $dropdown['first_name'] . '</option>';
-    }
-}else{
-    echo '<option value="">' . "all players have a team" . '</option>';
-}
-?>
-    </select>
-
 <?php
 
 //zichtbaar voor admin (gebruikersrechten 1)
 $dbc = $conn;
 $sql = "SELECT * FROM tbl_teams ORDER BY `name` ASC";
-$players = $dbc->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+$teams = $dbc->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 if (isset($_SESSION['is_Admin'])){
-    foreach ($players as $item){
+    echo "List of Teams";
+    foreach ($teams as $item){
         echo "<ul>";
         echo "<a class='removeButton' href='../app/team/deleteTeam.php?teamId=" . $item['id'] . "'>Remove " . $item["name"] . "</a>";
+        echo "</ul>";
+    }
+}else{
+    echo "List of Teams";
+    foreach ($teams as $item){
+        echo "<ul>";
+        echo $item["name"];
         echo "</ul>";
     }
 }

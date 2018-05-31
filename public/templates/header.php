@@ -21,6 +21,7 @@
 
                 <nav>
                     <?php
+                    header('Content-Type: text/html; charset=ISO-8859-1');
                     session_start();
                     error_reporting(E_PARSE || E_ERROR);
                     if (isset($_SESSION['is_Admin']) || isset($_SESSION['username'])){
