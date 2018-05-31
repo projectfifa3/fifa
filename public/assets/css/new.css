@@ -556,7 +556,18 @@ select{
     margin-top: 70px;
 }
 
+/*---------------------------------------------------------------------playerstats------------------------------------------------*/
 
+.playerOutput{
+    display: inline-flex;
+    margin-top: 100px;
+    margin-left: 210px;
+    justify-content: space-between;
+}
+.statsform{
+    text-align: center;
+    display: block;
+}
 
 
 
