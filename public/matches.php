@@ -37,7 +37,10 @@ require ('templates/header.php');
 
             <h2>Knock-out</h2>
             <?php
+            // rquires the database
             require ('../app/dbconn.php');
+
+            //showing the messages
 
             if ($_GET['submit'] == 'succes'){
                 echo '<h2>succesfully added!</h2>';
