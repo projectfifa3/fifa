@@ -4,6 +4,12 @@ require('../dbconn.php');
 if (isset($_POST['name'])){
 
     $teamname = $_POST['name'];
+    $sendbutton = $_POST['sendbutton'];
+    $teamname = htmlspecialchars($teamname, ENT_QUOTES);
+    $sendbutton = htmlspecialchars($sendbutton, ENT_QUOTES);
+
+
+
 
 
     $sql = "SELECT * FROM `tbl_teams` WHERE `name` = '$teamname'";

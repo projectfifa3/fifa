@@ -175,6 +175,14 @@ h5{
     text-align: center;
     font-size: 20px;
 }
+.csvdownload a{
+    text-decoration: none;
+    font-size:  30px;
+}
+.csvdownload{
+    margin-top: 100px;
+
+}
 .info {
     background-color: #ADD8E6;
     /*background-image: url(".  ./../../img/soccerBG2.png");*/
@@ -335,6 +343,14 @@ h6{
 .team span {
     font-weight: bold;
 }
+.teamerrormsg{
+    text-align: center;
+    margin-top: 20px;
+}
+.teamerrormsg h2{
+    margin-top: 20px;
+}
+.team-list
 
 /* ==================== WEDSTRIJDEN ====================*/
 
@@ -375,6 +391,8 @@ h6{
 .knockout-match {
     border: 1px solid #ffffff;
     padding: 5px;
+    width: 180px;
+    margin: 0 auto;
 }
 
 /*.knockout-match:before {
@@ -592,7 +610,9 @@ body{
     text-align: center;
     display: block;
 }
-
+.playercard{
+    background-image: url("../../../img/p_rare_gold.png");
+}
 
 
 

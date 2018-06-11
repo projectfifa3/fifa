@@ -754,69 +754,548 @@ require ('templates/header.php');
 
         </div>
         <div class="poules-teams">
+
             <h2>Poules</h2>
+
             <div class="poules">
+
                 <div class="poule">
+
                     <h3>Poule A</h3>
+
                     <ul>
+
                         <?php
-                        foreach ($results as $teams){
-                            echo '<li>'.$teams['name'].'</li>';
-                        }
-                        ?>
+
+                        $team = $conn->prepare("SELECT * FROM tbl_teams WHERE poule_id = 1");
+                        $team->execute();
+
+                        for($i=0; $row = $team->fetch(); $i++){
+                            ?>
+
+                            <li>
+
+                                <?php echo $row['name']; ?>
+
+                            </li>
+
+                        <?php } ?>
+
                     </ul>
+
                 </div>
+
                 <div class="poule">
+
                     <h3>Poule B</h3>
+
                     <ul>
+
                         <?php
-                        foreach ($desresults as $teams){
-                            echo '<li>'.$teams['name'].'</li>';
-                        }
-                        ?>
+
+                        $team = $conn->prepare("SELECT * FROM tbl_teams WHERE poule_id = 0");
+                        $team->execute();
+
+                        for($i=0; $row = $team->fetch(); $i++){
+                            ?>
+
+                            <li>
+
+                                <?php echo $row['name']; ?>
+
+                            </li>
+
+                        <?php } ?>
                     </ul>
+
                 </div>
+
+            </div>
+
+        </div>
+
+        <div class="poules-shedule">
+
+            <h2>Poule Wedstrijden</h2>
+
+
+            <div class="poules-games">
+
+                <div class="poule-games">
+
+                    <p>1ste Wedstrijden</p>
+
+                    <ul>
+
+                        <?php
+
+                        $team = $conn->prepare("SELECT * FROM tbl_teams WHERE poule_id = 1");
+                        $team->execute();
+
+                        for($i=0; $row = $team->fetch(); $i++){
+                            ?>
+
+                            <li>
+
+                            <?php
+
+                            echo $row['name'] . " VS ";
+
+                            for ($i=0; $row = $team->fetch(); $i++)
+                            {
+
+                                echo $row['name'] . "<br>";
+
+                                ?>
+
+                                </li>
+
+                                <li>
+
+                                <?php
+
+                                for ($i=0; $row = $team->fetch(); $i++)
+                                {
+
+                                    echo $row['name'] . " VS ";
+
+                                    for ($i=0; $row = $team->fetch(); $i++)
+                                    {
+
+                                        echo $row['name'];
+
+                                    }
+                                }
+
+                            }
+
+
+
+                            $team = $conn->prepare("SELECT * FROM tbl_teams WHERE poule_id = 2");
+                            $team->execute();
+
+                            for($i=0; $row = $team->fetch(); $i++){
+                                ?>
+
+                                <li>
+
+                                <?php
+
+                                echo $row['name'] . " VS ";
+
+                                for ($i=0; $row = $team->fetch(); $i++)
+                                {
+
+                                    echo $row['name'] . "<br>";
+
+                                    ?>
+
+                                    </li>
+
+                                    <li>
+                                    <?php
+
+                                    for ($i=0; $row = $team->fetch(); $i++)
+                                    {
+
+                                        echo $row['name'] . " VS ";
+
+                                        for ($i=0; $row = $team->fetch(); $i++)
+                                        {
+
+                                            echo $row['name'];
+
+                                        }
+                                    }
+
+                                }
+
+                                ?>
+
+                                </li>
+
+                            <?php } ?>
+
+
+                            </li>
+
+                        <?php } ?>
+
+                    </ul>
+
+                </div>
+
+                <div class="poule-games">
+
+                    <p>2de Wedstrijden</p>
+
+                    <ul>
+
+                        <?php
+
+                        $team = $conn->prepare("SELECT * FROM tbl_teams WHERE poule_id = 1");
+                        $team->execute();
+
+                        for($i=0; $row = $team->fetch(); $i++){
+                            ?>
+
+                            <li>
+
+                            <?php
+
+                            echo $row['name'] . " VS ";
+
+                            for ($i=0; $row = $team->fetch(); $i++)
+                            {
+
+                                echo $row['name'] . "<br>";
+
+                                ?>
+
+                                </li>
+
+                                <li>
+
+                                <?php
+
+                                for ($i=0; $row = $team->fetch(); $i++)
+                                {
+
+                                    echo $row['name'] . " VS ";
+
+                                    for ($i=0; $row = $team->fetch(); $i++)
+                                    {
+
+                                        echo $row['name'];
+
+                                    }
+                                }
+
+                            }
+
+
+
+                            $team = $conn->prepare("SELECT * FROM tbl_teams WHERE poule_id = 2");
+                            $team->execute();
+
+                            for($i=0; $row = $team->fetch(); $i++){
+                                ?>
+
+                                <li>
+
+                                <?php
+
+                                echo $row['name'] . " VS ";
+
+                                for ($i=0; $row = $team->fetch(); $i++)
+                                {
+
+                                    echo $row['name'] . "<br>";
+
+                                    ?>
+
+                                    </li>
+
+                                    <li>
+                                    <?php
+
+                                    for ($i=0; $row = $team->fetch(); $i++)
+                                    {
+
+                                        echo $row['name'] . " VS ";
+
+                                        for ($i=0; $row = $team->fetch(); $i++)
+                                        {
+
+                                            echo $row['name'];
+
+                                        }
+                                    }
+
+                                }
+
+                                ?>
+
+                                </li>
+
+                            <?php } ?>
+
+
+                            </li>
+
+                        <?php } ?>
+
+                    </ul>
+
+                </div>
+
+                <div class="poule-games">
+
+                    <p>3de Wedstrijden</p>
+
+                    <ul>
+
+                        <?php
+
+                        $team = $conn->prepare("SELECT * FROM tbl_teams WHERE poule_id = 0");
+                        $team->execute();
+
+                        for($i=0; $row = $team->fetch(); $i++){
+                            ?>
+
+                            <li>
+
+                            <?php
+
+                            echo $row['name'] . " VS ";
+
+                            for ($i=0; $row = $team->fetch(); $i++)
+                            {
+
+                                echo $row['name'] . "<br>";
+
+                                ?>
+
+                                </li>
+
+                                <li>
+
+                                <?php
+
+                                for ($i=0; $row = $team->fetch(); $i++)
+                                {
+
+                                    echo $row['name'] . " VS ";
+
+                                    for ($i=0; $row = $team->fetch(); $i++)
+                                    {
+
+                                        echo $row['name'];
+
+                                    }
+                                }
+
+                            }
+
+
+
+                            $team = $conn->prepare("SELECT * FROM tbl_teams WHERE poule_id = 2");
+                            $team->execute();
+
+                            for($i=0; $row = $team->fetch(); $i++){
+                                ?>
+
+                                <li>
+
+                                <?php
+
+                                echo $row['name'] . " VS ";
+
+                                for ($i=0; $row = $team->fetch(); $i++)
+                                {
+
+                                    echo $row['name'] . "<br>";
+
+                                    ?>
+
+                                    </li>
+
+                                    <li>
+                                    <?php
+
+                                    for ($i=0; $row = $team->fetch(); $i++)
+                                    {
+
+                                        echo $row['name'] . " VS ";
+
+                                        for ($i=0; $row = $team->fetch(); $i++)
+                                        {
+
+                                            echo $row['name'];
+
+                                        }
+                                    }
+
+                                }
+
+                                ?>
+
+                                </li>
+
+                            <?php } ?>
+
+
+                            </li>
+
+                        <?php } ?>
+
+                    </ul>
+
+                </div>
+
+                <div class="poule-games">
+
+                    <p>4de Wedstrijden</p>
+
+                    <ul>
+
+                        <?php
+
+                        $team = $conn->prepare("SELECT * FROM tbl_teams WHERE poule_id = 1");
+                        $team->execute();
+
+                        for($i=0; $row = $team->fetch(); $i++){
+                            ?>
+
+                            <li>
+
+                            <?php
+
+                            echo $row['name'] . " VS ";
+
+                            for ($i=0; $row = $team->fetch(); $i++)
+                            {
+
+                                echo $row['name'] . "<br>";
+
+                                ?>
+
+                                </li>
+
+                                <li>
+
+                                <?php
+
+                                for ($i=0; $row = $team->fetch(); $i++)
+                                {
+
+                                    echo $row['name'] . " VS ";
+
+                                    for ($i=0; $row = $team->fetch(); $i++)
+                                    {
+
+                                        echo $row['name'];
+
+                                    }
+                                }
+
+                            }
+
+
+
+                            $team = $conn->prepare("SELECT * FROM tbl_teams WHERE poule_id = 2");
+                            $team->execute();
+
+                            for($i=0; $row = $team->fetch(); $i++){
+                                ?>
+
+                                <li>
+
+                                <?php
+
+                                echo $row['name'] . " VS ";
+
+                                for ($i=0; $row = $team->fetch(); $i++)
+                                {
+
+                                    echo $row['name'] . "<br>";
+
+                                    ?>
+
+                                    </li>
+
+                                    <li>
+                                    <?php
+
+                                    for ($i=0; $row = $team->fetch(); $i++)
+                                    {
+
+                                        echo $row['name'] . " VS ";
+
+                                        for ($i=0; $row = $team->fetch(); $i++)
+                                        {
+
+                                            echo $row['name'];
+
+                                        }
+                                    }
+
+                                }
+
+                                ?>
+
+                                </li>
+
+                            <?php } ?>
+
+
+                            </li>
+
+                        <?php } ?>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--alleen kunnen zien als admin-->
+
+        <div class="add-result">
+
+            <h2>Invoer Eindstand</h2>
+
+            <div class="add-result-team">
+
+                <form action="result-submit.php" method="post">
+
+                    <select name="team1" id="team1">
+                        <option value="0" selected>Kies een team</option>
+
+                        <?php
+
+                        $result = $conn->prepare("SELECT * FROM tbl_teams");
+                        $result->execute();
+
+                        for($i=0; $row = $result->fetch(); $i++){
+                            ?>
+
+                            <ul>
+
+                                <option value="<?php echo $row['name'] ?>"><?php echo $row['name']; ?></option>
+
+                            </ul>
+
+                        <?php } ?>
+                    </select>
+                    <p> - </p>
+                    <select name="team2" id="team2">
+                        <option value="0" selected>Kies een team</option>
+                        <?php
+                        $result = $conn->prepare("SELECT * FROM tbl_teams");
+                        $result->execute();
+                        for($i=0; $row = $result->fetch(); $i++){
+                            ?>
+                            <ul>
+                                <option value="<?php echo $row['name'] ?>"><?php echo $row['name']; ?></option>
+                            </ul>
+                        <?php } ?>
+                    </select>
+                    </div>
+                    <div class="add-result-scorer-subbmit">
+                        <div class="add-result-score">
+                            <input type="number" name="score1" size="1" min="0" max="99" maxlength="2">
+                            <p> - </p>
+                            <input type="number" name="score2" size="1" min="0" max="99" maxlength="2">
+                        </div>
+                        <input type="submit" name="submit_result" id="submit_result">
+                </form>
             </div>
         </div>
-        <div class="add-result-scorer-right">
-
-            <form action="matches.php" method="post">
-
-                <select name="playername2" id="scorer2">
-
-                    <option value="" selected>Kies een speler</option>
-
-                    <?php
-
-                    $result = $conn->prepare("SELECT * FROM tbl_players");
-                    $result->execute();
-
-                    for($i=0; $row = $result->fetch(); $i++){
-                        ?>
-
-                        <option value="<?php echo $row['first_name']; ?>" >
-                            <?php echo $row['first_name']; ?>
-                        </option>
-
-
-                    <?php } ?>
-
-
-                </select>
-                <input type="number" name="amount_goals2" id="amount_goals2" min="1" max="99" maxlength="2" placeholder="Goals">
-
-                <input type="submit" name="add_scorer2" id="add_scorer2" value="Toevoegen">
-
-                <?php
-
-                $scorer2 = $_POST['amount_goals2'];
-                $playername2 = $_POST['playername2'];
-                    if (isset($_POST['add_scorer2'])){
-                        $addscorequery2 = "INSERT INTO `tbl_goalscores`(player, goals)VALUES (:player, :goals)";
-                        $addscoreResult2 = $conn->prepare($addscorequery2);
-                        $scoreexec = $addscoreResult2->execute(array(":player" => $playername2, ":goals" => $scorer2));
-                    }
-                ?>
+    </div>
+</div>
                 <?php
 require('templates/footer.php');
 ?>

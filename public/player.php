@@ -38,42 +38,49 @@ require ('../app/dbconn.php');
     $teams = $conn->prepare("SELECT * FROM tbl_teams");
     $teams->execute();
 
+
+
     ?>
-<div class="info">
-    <div class="container">
-    <form action="../app/player/addPlayer.php" method="POST">
 
-<div class="playeradd">
-        <div class="item">
-            <label for="first_name">firstname</label>
-            <input type="text" name="first_name" required>
-        </div>
-        <div class="item">
-            <label for="last_name">lastname</label>
-            <input type="text" name="last_name" required>
-        </div>
-        <div class="item">
-            <label for="student_id">student id</label>
-            <input type="text" name="student_id" required>
-        </div>
-        <div class="item">
-            <label for="student_id">team</label>
-            <select name="formPlayer">
-                <?php
+        <?php
+        if (isset($_SESSION['username']) || isset($_SESSION['is_Admin'])){
+            echo ' 
+                    <div class="info">
+                    <div class="container"> <form action="../app/player/addPlayer.php" method="POST">
 
+                    <div class="playeradd">
+                    <div class="item">
+                        <label for="first_name">firstname</label>
+                        <input type="text" name="first_name" required>
+                    </div>
+                    <div class="item">
+                        <label for="last_name">lastname</label>
+                        <input type="text" name="last_name" required>
+                    </div>
+                    <div class="item">
+                        <label for="student_id">student id</label>
+                        <input type="text" name="student_id" required>
+                    </div>                    <div class="item">
+                        <label for="student_id">team</label>
+                        <select name="formPlayer">';
                 foreach ($teams as $dropdown) {
                     echo '<option value="' . $dropdown['id'] . '">' . $dropdown['name'] . '</option>';
                 }
-                ?>
-            </select>
+                echo '  </select>
         </div>
         <div class="item">
-            <input class="sendbutton" type="submit">
+            <input class="sendbutton" type="submit" name="sendplayer">
         </div>
 </div>
         </div>
 </div>
-    </form>
+    </form>';
+
+        }else{
+            echo '<h2 class="teamerrormsg">als je spelers wilt toevoegen, zou je eerst moeten inloggen</h2>';
+        }
+        ?>
+
 
     <?php
 

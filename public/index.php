@@ -27,36 +27,66 @@ require ('templates/header.php')
     <div class="container">
         <div class="info-header">
             <?php
-            if (!isset($_SESSION['username'])){
+            if (!isset($_SESSION['username']) || isset($_SESSION['is_Admin'])){
                 echo '<h2>Project FIFA</h2>
-<h2>Als je het CSV bestand wilt downloaden, moet je je eerst <a href="login.php" style="text-decoration: none">registreren</a></h2>
-';
+                      <h2>Als je het CSV bestand wilt downloaden, moet je je eerst <a href="login.php" style="text-decoration: none">registreren</a></h2>
+                      <h2>Als u een fout in de website ziet kunt u het <a href="https://github.com/projectfifa3/fifa/issues" style="text-decoration: none">hier</a> rapporteren</h2>
+                      ';
             }
             ?>
         </div>
         <div class="download">
             <?php
-            if (isset($_SESSION['username'])){
-                echo '<form action="index.php" method="post" id="downloadcsv">
-                  <input type="submit" value="download csv" name="submit" class="csvdownload">';
+            if (isset($_SESSION['username']) || isset($_SESSION['is_Admin'])){
+                echo '<div class="csvdownload">
+                  <a href="tbl_all.csv">Download CSV</a>
+                </div>';
             }
 
-            if (isset($_POST['submit'])) {
 
-                session_start();
-                header('Content-Type: text/csv; charset=utf-8');
-                header('Content-Disposition: attachment; filename=project_fifa' . date('Y-m-d') . '.csv');
-                $output = fopen("php://output", "w");
-                fputcsv($output, array('id', 'teamname', 'position', 'score'));
 
-                $array = $conn->prepare("SELECT * FROM tbl_team ");
-                $array->execute();
-                $array = $array->fetchAll();
-                foreach ($array as $row) {
-                    fputcsv($output, $row);
-                }
-                fclose($output);
-            }
+//                session_start();
+//                header('Content-Type: text/csv; charset=utf-8');
+//                header('Content-Disposition: attachment; filename=project_fifa' . date('Y-m-d') . '.csv');
+//                $output = fopen("php://output", "w");
+//                fputcsv($output, array('id', 'teamname', 'position', 'score'));
+//
+//                $array = $conn->prepare("SELECT * FROM tbl_team ");
+//                $array->execute();
+//                $array = $array->fetchAll();
+//                foreach ($array as $row) {
+//                    fputcsv($output, $row);
+//                }
+//                fclose($output);
+
+
+
+
+//                   Pick a filename and destination directory for the file
+//                   Remember that the folder where you want to write the file has to be writable
+//                   header('Content-Type: text/csv; charset=utf-8');
+//                   header('Content-Disposition: attachment; filename=project_fifa' . date('Y-m-d') . '.csv');
+//
+////                 Actually create the file
+////                 The w+ parameter will wipe out and overwrite any existing file with the same name
+//                   $handle = fopen("php://output", "w");
+////                 Write the spreadsheet column titles / labels
+//                   fputcsv($handle, array('student_id','team_id', 'first_name', 'last_name'));
+//
+////                  Write all the user records to the spreadsheet
+//                    foreach($results as $row)
+//                    {
+//                        fputcsv($handle, array($row['student_id'], $row['team_id'], $row['first_name'], $row['last_name']));
+//                    }
+//
+//
+//                      Finish writing the file
+//                    fclose($handle);
+
+
+
+
+
             ?>
         </div>
 

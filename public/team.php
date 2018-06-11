@@ -56,8 +56,9 @@ else if (isset($_GET['del']) && $_GET['del'] == "success"){
     echo 'window.location.href = "team.php";';
     echo '</script>';
 }
-?>
-<form action="../app/team/addTeam.php" method="POST">
+
+if (isset($_SESSION['username']) || isset($_SESSION['is_Admin'])){
+    echo '<form action="../app/team/addTeam.php" method="POST">
     <div class="teamadd">
         <div class="item">
             <label for="teamname">teamname:</label>
@@ -67,7 +68,13 @@ else if (isset($_GET['del']) && $_GET['del'] == "success"){
             <input type="submit" class="sendbutton">
         </div>
     </div>
-</form>
+</form>';
+}else{
+    echo '<h2 class="teamerrormsg">om teams te kunnen toevoegen moet je eerst inloggen</h2>';
+}
+
+?>
+
 <?php
 
 //zichtbaar voor admin (gebruikersrechten 1)
@@ -81,16 +88,17 @@ if (isset($_SESSION['is_Admin'])){
         echo "<a class='removeButton' href='../app/team/deleteTeam.php?teamId=" . $item['id'] . "'>Remove " . $item["name"] . "</a>";
         echo "</ul>";
     }
-}else{
-    echo "List of Teams";
-    foreach ($teams as $item){
-        echo "<ul>";
+}else {
+    echo "<div class='team-list'><h2>lijst van alle teams</h2>";
+    echo "<ul>";
+    foreach ($teams as $item) {
+        echo '<li>';
         echo $item["name"];
-        echo "</ul>";
+        echo '</li>';
     }
+    echo "</ul></div>";
 }
-
-require ('templates/footer.php');
+require_once ('templates/footer.php');
 
 ?>
 

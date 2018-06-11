@@ -1,0 +1,24 @@
+id;team_id_a;team_id_b;score_team_a;score_team_b;start_time;
+539;497;496;;;10:58:59;
+540;499;498;;;11:13:59;
+541;500;493;;;11:28:59;
+542;501;495;;;11:44:00;
+id;student_id;team_id;first_name;last_name;created_at;deleted_at
+1;d123456;493;Lasse;Schöne;13-4-2017 09:44;
+2;d5435435;;Davy ;Klaassen;13-4-2017 09:44;
+3;d545454;;Hakim ;Ziyech;13-4-2017 09:45;
+4;d666555;493;Kasper;Dolberg;13-4-2017 09:45;
+5;d74745;;Luuk;de Jong;13-4-2017 09:48;
+6;d987665;495;Siem;de Jong;13-4-2017 09:48;
+7;d11555;;Jeroen;Zoet;13-4-2017 09:48;
+8;d544566;;Hector;Moreno;13-4-2017 09:48;
+9;d228528;;Dominic;Baeten;20-4-2018 11:49;
+id;poule_id;name;created_at;deleted_at;;
+493;1;PSV;1-6-2018 11:17;;;
+495;2;Ajax;1-6-2018 12:06;;;
+496;2;team;1-6-2018 12:10;;;
+497;2;Feyenoord;1-6-2018 12:10;;;
+498;2;Twente;1-6-2018 12:10;;;
+499;1;Nac;1-6-2018 12:10;;;
+500;1;Willem2;4-6-2018 09:47;;;
+501;1;Vitesse;4-6-2018 09:49;;;

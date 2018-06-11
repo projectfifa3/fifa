@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET")
     if (isset($_GET["teamId"]))
     {
         $teamId = $_GET["teamId"];
+        $teamId = htmlspecialchars($teamId, ENT_QUOTES);
+
 
         $dbc = $conn;
         $sql = "DELETE FROM `tbl_teams` WHERE `id` = '$teamId'";

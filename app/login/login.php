@@ -5,6 +5,12 @@ error_reporting(E_ERROR || E_PARSE);
 require ('../dbconn.php');
 $uid = $_POST['username'];
 $pwd = $_POST['password'];
+$login = $_POST['login'];
+$uid = htmlspecialchars($uid, ENT_QUOTES);
+$pwd = htmlspecialchars($pwd, ENT_QUOTES);
+$login = htmlspecialchars($login, ENT_QUOTES);
+
+
 $is_Admin = false;
 
 

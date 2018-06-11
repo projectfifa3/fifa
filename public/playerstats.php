@@ -10,11 +10,12 @@
 </head>
 <body>
 <div class="info">
+
     <?php
 
 include_once ('templates/header.php');
 include ('../app/dbconn.php');
-    echo '<p>player name       pace</p>';
+    echo '<p>player name - pace</p>';
     echo '<div class="playerOutput">';
     $FetchallPlayers = "SELECT * FROM `tbl_players`";
     $fetchResult = $conn->prepare($FetchallPlayers);
@@ -24,17 +25,25 @@ include ('../app/dbconn.php');
         echo '<ul><li>';
         echo $item['first_name'];
         echo $item['last_name'].'  -  ';
-        echo $item['pace'];
+        echo $item['pace'].' __ ';
+        echo $item['defending'].' __ ';
+        echo $item['shot'];
         echo '</li></ul>';
     }
     echo '</div>';
 
     if (isset($_SESSION['is_Admin'])){
         echo '<div class="statsform">
-            <h2>stats input</h2>
-            <h3>pace</h3>
+            <h2>statestieken invoeren</h2>
+            <h3>snelheid</h3>
             <form action="playerstats.php" method="post">
-            <input type="number" name="numberinput" max="100" min="10" >
+            <input type="number" name="paceinput" max="100" min="10" >
+            
+            <h3>verdedigen</h3>
+            <input type="number" name="defendinginput" max="100" min="10" >
+            
+             <h3>schot</h3>
+            <input type="number" name="shotinput" max="100" min="10" >
             ';
         echo '<select name="playername">';
         foreach ($fetchExec as $item){
@@ -45,12 +54,23 @@ include ('../app/dbconn.php');
     }
 
 
-    $pace = $_POST['numberinput'];
+    $pace = $_POST['paceinput'];
+    $defending = $_POST['defendinginput'];
+    $shot = $_POST['shotinput'];
+
     $playerId = $_POST['playername'];
     if (isset($_POST['statsubmit'])){
         $updatepace = "UPDATE `tbl_players` SET `pace` = '$pace' WHERE `last_name` = '$playerId'";
         $paceResult = $conn->prepare($updatepace);
         $exec = $paceResult->execute();
+
+        $updateDefending = "UPDATE `tbl_players` SET `defending` = '$defending' WHERE `last_name` = '$playerId'";
+        $defendingResult = $conn->prepare($updateDefending);
+        $exec = $defendingResult->execute();
+
+        $updateshot = "UPDATE `tbl_players` SET `shot` = '$shot' WHERE `last_name` = '$playerId'";
+        $shotResult = $conn->prepare($updateshot);
+        $exec = $shotResult->execute();
         header('location:playerstats.php?edit=succes');
     }
     if (($_GET['edit'] == 'success')){
@@ -77,6 +97,7 @@ include ('../app/dbconn.php');
 <?php
 include_once ('templates/footer.php');
 ?>
+
 </body>
 </html>
 

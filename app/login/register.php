@@ -2,6 +2,12 @@
 require ('../dbconn.php');
 $uid = $_POST['username'];
 $pwd = $_POST['password'];
+$signup = $_POST['signup'];
+$uid = htmlspecialchars($uid, ENT_QUOTES);
+$pwd = htmlspecialchars($pwd, ENT_QUOTES);
+$signup = htmlspecialchars($signup, ENT_QUOTES);
+
+
 
 if (empty($uid) || empty($pwd)){
     header("location: ../../public/login.php?signup=empty");

@@ -79,9 +79,7 @@
         {
             echo '<h5>de gerbuikersnaam of wachtwoord is onjuist</h5>';
         }
-        if (isset($_SESSION['username'])){
-            echo '<h2>welkom '.$_SESSION["username"].'</h2>';
-        }
+
         ?>
     </div>
 

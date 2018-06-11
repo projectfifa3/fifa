@@ -149,6 +149,10 @@ h5{
     margin-bottom: 0;
     margin-top: 0;
 }
+.csvdownload a{
+    text-decoration: none;
+    font-size:  20px;
+}
 .info {
     background-color: #ADD8E6;
 }
