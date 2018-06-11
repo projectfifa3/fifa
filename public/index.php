@@ -15,6 +15,7 @@
     <!-- Place favicon.ico in the root directory -->
 </head>
 <body>
+<audio src="../app/music/renegades.mp3" autoplay></audio>
 <?php
 require ('templates/header.php')
 ?>
