@@ -69,7 +69,7 @@ require ('templates/header.php');
                     echo '<h2>het winnende team is:</h2>';
                     foreach ($winnerteamFetch as $result){
                         echo '<div class="winner">';
-                        echo $result['teamname'].'!';
+                        echo $result['name'].'!';
                         echo '</div>';
                     }
                 }
@@ -80,7 +80,7 @@ require ('templates/header.php');
                 <div class="knockout-match">
                     <h3>Finale</h3>
                     <?php
-                    // fetch the teamnames from the database
+                    // fetch the names from the database
 
                     $finalteam1 = "SELECT * FROM `tbl_team` WHERE `position` = '13';";
                     $finalteam1Result = $conn->prepare($finalteam1);
@@ -93,14 +93,14 @@ require ('templates/header.php');
                     $finalteam2Fetch = $finalteam2Result->fetchAll();
 
                     foreach ($finalteam1Fetch as $result1){
-                        echo '<span class="final1">'. $result1['teamname'].'</span>';
-                        $finalteamname1 = $result1['teamname'];
+                        echo '<span class="final1">'. $result1['name'].'</span>';
+                        $finalname1 = $result1['name'];
                         $finalteamscore1 = $result1['score'];
 
                     }
                     foreach ($finalteam2Fetch as $result2){
-                        echo '<span class="final1">'. $result2['teamname'].'</span>';
-                        $finalteamname2 = $result2['teamname'];
+                        echo '<span class="final1">'. $result2['name'].'</span>';
+                        $finalname2 = $result2['name'];
                         $finalteamscore2 = $result2['score'];
 
                     }
@@ -220,18 +220,18 @@ require ('templates/header.php');
 
                     foreach ($winner1Fetch as $winner1){
                         echo '<div class="winner1">';
-                        echo $winner1['teamname'];
+                        echo $winner1['name'];
                         echo '</div>';
-                        $halfwinner1 = $winner1['teamname'];
+                        $halfwinner1 = $winner1['name'];
                     }
 
 
 
                     foreach ($winner2Fetch as $winner2){
                         echo '<div class="winner1">';
-                        echo $winner2['teamname'];
+                        echo $winner2['name'];
                         echo '</div>';
-                        $halfwinner2 = $winner2['teamname'];
+                        $halfwinner2 = $winner2['name'];
 
                     }
                     ?>
@@ -260,26 +260,26 @@ require ('templates/header.php');
                     // the team that won from the third and fourth match against eachother
                     foreach ($winner3Fetch as $winner3) {
                                 echo '<div class="winner1">';
-                                echo $winner3['teamname'];
+                                echo $winner3['name'];
                                 echo '</div>';
-                        $halfwinner3 = $winner3['teamname'];
+                        $halfwinner3 = $winner3['name'];
 
                     }
 
                     foreach ($winner4Fetch as $winner4){
                         echo '<div class="winner1">';
-                        echo $winner4['teamname'];
+                        echo $winner4['name'];
                         echo '</div>';
-                        $halfwinner4 = $winner4['teamname'];
+                        $halfwinner4 = $winner4['name'];
                     }
                     //winner1
-                    $halfwinner10 = $winner1Fetch['teamname'];
+                    $halfwinner10 = $winner1Fetch['name'];
                     //winner2
-                    $halfwinner20  = $winner2Fetch['teamname'];
+                    $halfwinner20  = $winner2Fetch['name'];
                     //winner3
-                    $halfwinner30  = $winner3Fetch['teamname'];
+                    $halfwinner30  = $winner3Fetch['name'];
                     //winner4
-                    $halfwinner40  = $winner4Fetch['teamname'];
+                    $halfwinner40  = $winner4Fetch['name'];
 
                     // scores bij the 2DE half finals
 
@@ -354,35 +354,35 @@ require ('templates/header.php');
                 if (isset($_POST['submit'])) {
 
 
-                        $insertQuery = "UPDATE `tbl_team` SET `teamname` = '$team1',`score` = '$score1' WHERE `position` = '1' ";
+                        $insertQuery = "UPDATE `tbl_team` SET `name` = '$team1',`score` = '$score1' WHERE `position` = '1' ";
                         $insertResult = $conn->prepare($insertQuery);
                         $insertExec = $insertResult->execute();
 
-                        $insertQuery2 = "UPDATE `tbl_team` SET `teamname` = '$team2',`score` = '$score2' WHERE `position` = '2' ";
+                        $insertQuery2 = "UPDATE `tbl_team` SET `name` = '$team2',`score` = '$score2' WHERE `position` = '2' ";
                         $insertResult2 = $conn->prepare($insertQuery2);
                         $insertExec = $insertResult2->execute();
 
-                        $insertQuery3 = "UPDATE `tbl_team` SET `teamname` = '$team3',`score` = '$score3' WHERE `position` = '3'";
+                        $insertQuery3 = "UPDATE `tbl_team` SET `name` = '$team3',`score` = '$score3' WHERE `position` = '3'";
                         $insertResult3 = $conn->prepare($insertQuery3);
                         $insertExec = $insertResult3->execute();
 
-                        $insertQuery4 = "UPDATE `tbl_team` SET `teamname` = '$team4',`score` = '$score4' WHERE `position` = '4'";
+                        $insertQuery4 = "UPDATE `tbl_team` SET `name` = '$team4',`score` = '$score4' WHERE `position` = '4'";
                         $insertResult4 = $conn->prepare($insertQuery4);
                         $insertExec = $insertResult4->execute();
 
-                        $insertQuery5 = "UPDATE `tbl_team` SET `teamname` = '$team5',`score` = '$score5' WHERE `position` = '5'";
+                        $insertQuery5 = "UPDATE `tbl_team` SET `name` = '$team5',`score` = '$score5' WHERE `position` = '5'";
                         $insertResult5 = $conn->prepare($insertQuery5);
                         $insertExec = $insertResult5->execute();
 
-                        $insertQuery6 = "UPDATE `tbl_team` SET `teamname` = '$team6',`score` = '$score6' WHERE `position` = '6'";
+                        $insertQuery6 = "UPDATE `tbl_team` SET `name` = '$team6',`score` = '$score6' WHERE `position` = '6'";
                         $insertResult6 = $conn->prepare($insertQuery6);
                         $insertExec = $insertResult6->execute();
 
-                        $insertQuery7 = "UPDATE `tbl_team` SET `teamname` = '$team7',`score` = '$score7' WHERE `position` = '7'";
+                        $insertQuery7 = "UPDATE `tbl_team` SET `name` = '$team7',`score` = '$score7' WHERE `position` = '7'";
                         $insertResult7 = $conn->prepare($insertQuery7);
                         $insertExec = $insertResult7->execute();
 
-                        $insertQuery8 = "UPDATE `tbl_team` SET `teamname` = '$team8',`score` = '$score8' WHERE `position` = '8'";
+                        $insertQuery8 = "UPDATE `tbl_team` SET `name` = '$team8',`score` = '$score8' WHERE `position` = '8'";
                         $insertResult8 = $conn->prepare($insertQuery8);
                         $insertExec = $insertResult8->execute();
 
@@ -390,13 +390,13 @@ require ('templates/header.php');
                         // first match
 
                     if ($score1 > $score2){
-                        $addpointTeam1 = "UPDATE `tbl_team` SET `teamname` = '$team1' WHERE `position` = '9'";
+                        $addpointTeam1 = "UPDATE `tbl_team` SET `name` = '$team1' WHERE `position` = '9'";
                         $pointTeam1Result = $conn->prepare($addpointTeam1);
                         $pointTeam1Exec = $pointTeam1Result->execute();
                     }
                     if($score2 > $score1){
 
-                        $addpointTeam2 = "UPDATE `tbl_team` SET  `teamname` = '$team2' WHERE `position` = '9'";
+                        $addpointTeam2 = "UPDATE `tbl_team` SET  `name` = '$team2' WHERE `position` = '9'";
                         $pointTeam2Result = $conn->prepare($addpointTeam2);
                         $pointTeam2Exec = $pointTeam2Result->execute();
                     }
@@ -404,12 +404,12 @@ require ('templates/header.php');
                     //match 2
 
                     if ($score3 > $score4){
-                        $addpointTeam3 = "UPDATE `tbl_team` SET `teamname` = '$team3'WHERE `position` = '10'";
+                        $addpointTeam3 = "UPDATE `tbl_team` SET `name` = '$team3'WHERE `position` = '10'";
                         $pointTeam3Result = $conn->prepare($addpointTeam3);
                         $pointTeam3Exec = $pointTeam3Result->execute();
                     }
                     if($score4 > $score3){
-                        $addpointTeam4 = "UPDATE `tbl_team` SET `teamname` = '$team4'WHERE `position` = '10'";
+                        $addpointTeam4 = "UPDATE `tbl_team` SET `name` = '$team4'WHERE `position` = '10'";
                         $pointTeam4Result = $conn->prepare($addpointTeam4);
                         $pointTeam4Exec = $pointTeam4Result->execute();
                     }
@@ -417,13 +417,13 @@ require ('templates/header.php');
                     //match 3
 
                     if ($score5 > $score6){
-                        $addpointTeam5 = "UPDATE `tbl_team` SET `teamname` = '$team5'WHERE `position` = '11'";
+                        $addpointTeam5 = "UPDATE `tbl_team` SET `name` = '$team5'WHERE `position` = '11'";
                         $pointTeam5Result = $conn->prepare($addpointTeam5);
                         $pointTeam5Exec = $pointTeam5Result->execute();
 
                     }
                     if ($score6 > $score5){
-                        $addpointTeam6 = "UPDATE `tbl_team` SET `teamname` = '$team6'WHERE `position` = '11'";
+                        $addpointTeam6 = "UPDATE `tbl_team` SET `name` = '$team6'WHERE `position` = '11'";
                         $pointTeam6Result = $conn->prepare($addpointTeam6);
                         $pointTeam6Exec = $pointTeam6Result->execute();
                     }
@@ -431,13 +431,13 @@ require ('templates/header.php');
                     //match 4
 
                     if ($score7 > $score8){
-                        $addpointTeam7 = "UPDATE `tbl_team` SET `teamname` = '$team7'WHERE `position` = '12'";
+                        $addpointTeam7 = "UPDATE `tbl_team` SET `name` = '$team7'WHERE `position` = '12'";
                         $pointTeam7Result = $conn->prepare($addpointTeam7);
                         $pointTeam7Exec = $pointTeam7Result->execute();
 
                     }
                     if ($score8 > $score7){
-                        $addpointTeam8 = "UPDATE `tbl_team` SET `teamname` = '$team8'WHERE `position` = '12'";
+                        $addpointTeam8 = "UPDATE `tbl_team` SET `name` = '$team8'WHERE `position` = '12'";
                         $pointTeam8Result = $conn->prepare($addpointTeam8);
                         $pointTeam8Exec = $pointTeam8Result->execute();
                     }
@@ -450,33 +450,33 @@ require ('templates/header.php');
                     //setting the winnign teams into a new position in the database
 
                     //match 1
-                    $insertHalf = "UPDATE `tbl_team` SET `teamname` = '$halfwinner1',`score` = '$halfscore1' WHERE `position` = '9' ";
+                    $insertHalf = "UPDATE `tbl_team` SET `name` = '$halfwinner1',`score` = '$halfscore1' WHERE `position` = '9' ";
                     $HalfResult = $conn->prepare($insertHalf);
                     $insertExec = $HalfResult->execute();
 
-                    $insertHalf2 = "UPDATE `tbl_team` SET `teamname` = '$halfwinner2',`score` = '$halfscore2' WHERE `position` = '10' ";
+                    $insertHalf2 = "UPDATE `tbl_team` SET `name` = '$halfwinner2',`score` = '$halfscore2' WHERE `position` = '10' ";
                     $HalfResult2 = $conn->prepare($insertHalf2);
                     $insertExec = $HalfResult2->execute();
 
-                    $insertHalf3 = "UPDATE `tbl_team` SET `teamname` = '$halfwinner3',`score` = '$halfscore3' WHERE `position` = '11' ";
+                    $insertHalf3 = "UPDATE `tbl_team` SET `name` = '$halfwinner3',`score` = '$halfscore3' WHERE `position` = '11' ";
                     $HalfResult3 = $conn->prepare($insertHalf3);
                     $insertExec = $HalfResult3->execute();
 
-                    $insertHalf4 = "UPDATE `tbl_team` SET `teamname` = '$halfwinner4',`score` = '$halfscore4' WHERE `position` = '12' ";
+                    $insertHalf4 = "UPDATE `tbl_team` SET `name` = '$halfwinner4',`score` = '$halfscore4' WHERE `position` = '12' ";
                     $HalfResult4 = $conn->prepare($insertHalf4);
                     $insertExec = $HalfResult4->execute();
 
                     if ($halfscore1 > $halfscore2){
-                        $updatepos1 = "UPDATE `tbl_team` SET `teamname` = '$halfwinner1' WHERE `position` = '13'";
+                        $updatepos1 = "UPDATE `tbl_team` SET `name` = '$halfwinner1' WHERE `position` = '13'";
                         $pos1Result = $conn->prepare($updatepos1);
                         $posExec = $pos1Result->execute();
                     }
                     elseif ($halfscore2 > $halfscore1){
-                        $updatepos2 = "UPDATE `tbl_team` SET `teamname` = '$halfwinner2' WHERE `position` = '13'";
+                        $updatepos2 = "UPDATE `tbl_team` SET `name` = '$halfwinner2' WHERE `position` = '13'";
                         $pos2Result = $conn->prepare($updatepos2);
                         $posExec = $pos2Result->execute();
                     }else{
-                        $updatepos10 = "UPDATE `tbl_team` SET `teamname` = 'no team' WHERE `position` = '13'";
+                        $updatepos10 = "UPDATE `tbl_team` SET `name` = 'no team' WHERE `position` = '13'";
                         $pos10Result = $conn->prepare($updatepos10);
                         $posExec = $pos10Result->execute();
                     }
@@ -484,20 +484,20 @@ require ('templates/header.php');
                     //match 2
 
                     if ($halfscore3 > $halfscore4){
-                        $updatepos3 = "UPDATE `tbl_team` SET `teamname` = '$halfwinner3' WHERE `position` = '14'";
+                        $updatepos3 = "UPDATE `tbl_team` SET `name` = '$halfwinner3' WHERE `position` = '14'";
                         $pos3Result = $conn->prepare($updatepos3);
                         $posExec = $pos3Result->execute();
                         header("location:matches.php?submit=scoresucces");
 
                     }
                     elseif ($halfscore4 > $halfscore3){
-                        $updatepos4 = "UPDATE `tbl_team` SET `teamname` = '$halfwinner4'WHERE `position`  = '14'";
+                        $updatepos4 = "UPDATE `tbl_team` SET `name` = '$halfwinner4'WHERE `position`  = '14'";
                         $pos4Result = $conn->prepare($updatepos4);
                         $posExec = $pos4Result->execute();
                         header("location:matches.php?submit=scoresucces");
 
                     }else{
-                        $updatepos20 = "UPDATE `tbl_team` SET `teamname` = 'no team' WHERE `position`  = '14'";
+                        $updatepos20 = "UPDATE `tbl_team` SET `name` = 'no team' WHERE `position`  = '14'";
                         $pos20Result = $conn->prepare($updatepos20);
                         $posExec = $pos20Result->execute();
                         header("location:matches.php?submit=scoresucces");
@@ -507,11 +507,11 @@ require ('templates/header.php');
                 }
                 if (isset($_POST['finalsubmit'])){
 
-                    $insertFinal = "UPDATE `tbl_team` SET `teamname` = '$finalteamname1',`score` = '$finalscore1' WHERE `position` = '13' ";
+                    $insertFinal = "UPDATE `tbl_team` SET `name` = '$finalname1',`score` = '$finalscore1' WHERE `position` = '13' ";
                     $FinalResult = $conn->prepare($insertFinal);
                     $insertExec = $FinalResult->execute();
 
-                    $insertFinal2 = "UPDATE `tbl_team` SET `teamname` = '$finalteamname2',`score` = '$finalscore2' WHERE `position` = '14' ";
+                    $insertFinal2 = "UPDATE `tbl_team` SET `name` = '$finalname2',`score` = '$finalscore2' WHERE `position` = '14' ";
                     $FinalResult2 = $conn->prepare($insertFinal2);
                     $insertExec = $FinalResult2->execute();
                     //the team with more score than the other team goes into a new position into the database
@@ -519,7 +519,7 @@ require ('templates/header.php');
                     //match 1
 
                     if ($finalscore1 > $finalscore2){
-                        $updateFinal1 = "UPDATE `tbl_team` SET `teamname` = '$finalteamname1', score = '$finalscore1' WHERE `position` = '15'";
+                        $updateFinal1 = "UPDATE `tbl_team` SET `name` = '$finalname1', score = '$finalscore1' WHERE `position` = '15'";
                         $final1Result = $conn->prepare($updateFinal1);
                         $finalExec = $final1Result->execute();
 
@@ -528,7 +528,7 @@ require ('templates/header.php');
 //                        $finalExec = $finalscore1Result->execute();
 
                     }elseif ($finalscore2 > $finalscore1){
-                        $updateFinal2 = "UPDATE `tbl_team` SET `teamname` = '$finalteamname2', `score` = '$finalscore2' WHERE `position` = '15'";
+                        $updateFinal2 = "UPDATE `tbl_team` SET `name` = '$finalname2', `score` = '$finalscore2' WHERE `position` = '15'";
                         $final2Result = $conn->prepare($updateFinal2);
                         $finalExec = $final2Result->execute();
 
@@ -536,7 +536,7 @@ require ('templates/header.php');
 //                        $finalscore2Result = $conn->prepare($updateFinalscore2);
 //                        $finalExec = $finalscore2Result->execute();
                     }else{
-                        $updateFinal3 = "UPDATE `tbl_team` SET `teamname` = 'no team', `score` = '00' WHERE `position` = '15'";
+                        $updateFinal3 = "UPDATE `tbl_team` SET `name` = 'no team', `score` = '00' WHERE `position` = '15'";
                         $final3Result = $conn->prepare($updateFinal3);
                         $finalExec = $final3Result->execute();
                     }
@@ -589,7 +589,7 @@ require ('templates/header.php');
                         $postResult->execute();
                         foreach ($postResult as ${'name'.$i}){
                             echo '<div class="matches">';
-                           echo ${'name'.$i}['teamname'];
+                           echo ${'name'.$i}['name'];
                            echo '</div>';
                         }
                         }
@@ -641,7 +641,7 @@ require ('templates/header.php');
                             $postResult->execute();
                             foreach ($postResult as ${'name'.$i}){
                                 echo '<div class="matches">';
-                                echo ${'name'.$i}['teamname'];
+                                echo ${'name'.$i}['name'];
                                 echo '</div>';
                             }
                         }
@@ -687,7 +687,7 @@ require ('templates/header.php');
                             $postResult->execute();
                             foreach ($postResult as ${'name'.$i}){
                                 echo '<div class="matches">';
-                                echo ${'name'.$i}['teamname'];
+                                echo ${'name'.$i}['name'];
                                 echo '</div>';
                             }
                         }
@@ -738,7 +738,7 @@ require ('templates/header.php');
                             $postResult->execute();
                             foreach ($postResult as ${'name'.$i}){
                                 echo '<div class="matches">';
-                                echo ${'name'.$i}['teamname'];
+                                echo ${'name'.$i}['name'];
                                 echo '</div>';
                             }
                         }
@@ -1286,10 +1286,17 @@ require ('templates/header.php');
                     </div>
                     <div class="add-result-scorer-subbmit">
                         <div class="add-result-score">
-                            <input type="number" name="score1" size="1" min="0" max="99" maxlength="2">
+                            <input type="number" name="playerscore1score1" size="1" min="0" max="99" maxlength="2">
                             <p> - </p>
-                            <input type="number" name="score2" size="1" min="0" max="99" maxlength="2">
+                            <input type="number" name="playerscore2" size="1" min="0" max="99" maxlength="2">
                         </div>
+                        <?php
+                        $playerscore = $_POST['playerscore2'];
+                        $playerscore2 = htmlspecialchars($playerscore, ENT_QUOTES);
+                        $playerscore = $_POST['playerscore2'];
+                        $playerscore2 = htmlspecialchars($playerscore, ENT_QUOTES);
+
+                        ?>
                         <input type="submit" name="submit_result" id="submit_result">
                 </form>
             </div>

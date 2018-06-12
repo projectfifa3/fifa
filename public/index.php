@@ -40,7 +40,16 @@ require ('templates/header.php')
             <?php
             if (isset($_SESSION['username']) || isset($_SESSION['is_Admin'])){
                 echo '<div class="csvdownload">
-                  <a href="tbl_all.csv">Download CSV</a>
+                  <a href="tbl_all.csv">Download CSV matches</a>
+                  
+                  <a href="download_scv.php">Download CSV players</a>
+                  <form action="download_scv.php" method="post">
+                  <label for="lbl_donwload">Download Matches.csv</label>
+                  <input type="submit" name="matches">
+                  <label for="lbl_donwload">Download Teams.csv</label>
+                  <input type="submit" name="poules">
+</form>
+
                 </div>';
             }
 

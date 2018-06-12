@@ -391,8 +391,9 @@ h6{
 .knockout-match {
     border: 1px solid #ffffff;
     padding: 5px;
-    width: 180px;
+    width: 210px;
     margin: 0 auto;
+    text-align: center;
 }
 
 /*.knockout-match:before {
@@ -475,7 +476,7 @@ h6{
 .matches{
     display: inline-flex;
     margin-left: 15px;
-    margin-right: 25px;
+    margin-right: 10px;
 }
 select{
     width: 65px;
@@ -507,7 +508,7 @@ select{
 .winner1{
 
     display: inline-flex;
-    margin-left: 10px;
+    margin-left: 25px;
     margin-right: 10px;
 }
 .stripe{
@@ -517,7 +518,7 @@ select{
 }
 .final1{
     margin-right: 10px;
-    margin-left: 10px;
+    margin-left: 25px;
 }
 .showwinner{
     position: relative;
